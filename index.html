@@ -27,6 +27,10 @@
 <meta name="twitter:title" content="Xếp Nguyện Vọng Thử" />
 <meta name="twitter:description" content="Công cụ xếp thử 15 nguyện vọng đại học, tự lưu trên trình duyệt." />
 <meta name="twitter:image" content="https://cdn.haitrieu.com/wp-content/uploads/2022/03/Logo-DH-Da-Nang-UDN.png" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 <style>
 :root{
   color-scheme:dark;
@@ -48,10 +52,10 @@
   --shadow:0 18px 45px rgba(0,0,0,.32);
 }
 *{box-sizing:border-box}
-html{scroll-behavior:smooth}
+html{scroll-behavior:smooth;font-synthesis-weight:none}
 body{
   margin:0;
-  font-family:Arial,"Helvetica Neue",Helvetica,sans-serif;
+  font-family:Inter,sans-serif;
   background:
     radial-gradient(circle at 18% -8%, rgba(59,130,246,.28), transparent 34%),
     radial-gradient(circle at 90% 6%, rgba(168,85,247,.16), transparent 28%),
@@ -60,7 +64,7 @@ body{
   min-height:100vh;
 }
 button,input,select,textarea{font:inherit}
-body,button,input,select,textarea,h1,h2,h3,p,span,div,table,th,td{font-family:Arial,"Helvetica Neue",Helvetica,sans-serif}
+body,button,input,select,textarea,h1,h2,h3,p,span,div,table,th,td{font-family:Inter,sans-serif}
 button{-webkit-tap-highlight-color:transparent}
 .app{width:min(1180px,100%);margin:0 auto;padding:14px}
 .topbar{
@@ -277,11 +281,11 @@ summary::-webkit-details-marker{display:none}
   body{background:white!important;color:#111!important}
   body *{visibility:hidden!important;box-shadow:none!important}
   #printArea,#printArea *{visibility:visible!important}
-  #printArea{display:block!important;position:absolute;left:0;top:0;width:100%;font-family:Arial,"Helvetica Neue",Helvetica,sans-serif!important;color:#111!important}
-  #printArea *{font-family:Arial,"Helvetica Neue",Helvetica,sans-serif!important}
-  .print-title{font-family:Arial,"Helvetica Neue",Helvetica,sans-serif!important;font-size:22pt;font-weight:800;margin:0 0 4pt;letter-spacing:0}
-  .print-meta{font-family:Arial,"Helvetica Neue",Helvetica,sans-serif!important;font-size:10.5pt;color:#444;margin:0 0 10pt}
-  .print-table{width:100%;border-collapse:collapse;font-family:Arial,"Helvetica Neue",Helvetica,sans-serif!important;font-size:10.5pt}
+  #printArea{display:block!important;position:absolute;left:0;top:0;width:100%;font-family:Inter,sans-serif!important;color:#111!important}
+  #printArea *{font-family:Inter,sans-serif!important}
+  .print-title{font-family:Inter,sans-serif!important;font-size:22pt;font-weight:800;margin:0 0 4pt;letter-spacing:0}
+  .print-meta{font-family:Inter,sans-serif!important;font-size:10.5pt;color:#444;margin:0 0 10pt}
+  .print-table{width:100%;border-collapse:collapse;font-family:Inter,sans-serif!important;font-size:10.5pt}
   .print-table th,.print-table td{border:1px solid #999;padding:6pt 7pt;vertical-align:top}
   .print-table th{background:#f1f1f1;text-align:left}
   .print-rank{width:34pt;text-align:center;font-weight:700}
@@ -663,8 +667,8 @@ $('saveCustomBtn').onclick=()=>{
 }
 $('copyBtn').onclick=async()=>{
   if(!selected.length) return toast('Chưa có nguyện vọng');
-  const hasScore=!Number.isNaN(parseFloat(String(userScore).replace(',','.')));
-  const text=selected.map((p,i)=>`${i+1}. ${p.school} - ${p.major} (${p.code}) - mốc ${fmt(benchmark(p))}${hasScore?' - '+riskOf(p).label:''}`).join('\n');
+  const text=selected.map((p,i)=>`${i+1}. ${p.school} - ${p.major} (${p.code}) - mốc ${fmt(benchmark(p))} - ${riskOf(p).label}`).join('
+');
   try{await navigator.clipboard.writeText(text); toast('Đã copy');}catch(e){prompt('Copy danh sách:',text);}
 }
 $('printBtn').onclick=()=>{preparePrint();window.print();};
