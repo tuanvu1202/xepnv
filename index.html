@@ -2,9 +2,36 @@
 <html lang="vi">
 <head>
 <meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Xếp nguyện vọng thử</title>
-<meta name="description" content="Xếp thử 15 nguyện vọng đại học theo điểm chuẩn nhiều năm, biên độ dao động và mức độ an toàn." />
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+<title>Xếp Nguyện Vọng Thử</title>
+<meta name="title" content="Xếp Nguyện Vọng Thử" />
+<meta name="description" content="Công cụ xếp thử 15 nguyện vọng đại học, so sánh điểm chuẩn nhiều năm và đánh giá mức độ an toàn theo điểm của bạn." />
+<meta name="keywords" content="xếp nguyện vọng thử, nguyện vọng đại học, điểm chuẩn đại học, Đại học Đà Nẵng, Bách khoa Đà Nẵng, VKU, Sư phạm Tin học" />
+<meta name="author" content="Tuan Vu" />
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#07111f" />
+<link rel="icon" type="image/png" href="https://cdn.haitrieu.com/wp-content/uploads/2022/03/Logo-DH-Da-Nang-UDN.png" />
+<link rel="shortcut icon" type="image/png" href="https://cdn.haitrieu.com/wp-content/uploads/2022/03/Logo-DH-Da-Nang-UDN.png" />
+<link rel="apple-touch-icon" href="https://cdn.haitrieu.com/wp-content/uploads/2022/03/Logo-DH-Da-Nang-UDN.png" />
+<meta property="og:locale" content="vi_VN" />
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Xếp Nguyện Vọng Thử" />
+<meta property="og:description" content="Công cụ xếp thử 15 nguyện vọng đại học, so sánh điểm chuẩn nhiều năm và đánh giá mức độ an toàn theo điểm của bạn." />
+<meta property="og:site_name" content="Xếp Nguyện Vọng Thử" />
+<meta property="og:image" content="https://cdn.haitrieu.com/wp-content/uploads/2022/03/Logo-DH-Da-Nang-UDN.png" />
+<meta property="og:image:secure_url" content="https://cdn.haitrieu.com/wp-content/uploads/2022/03/Logo-DH-Da-Nang-UDN.png" />
+<meta property="og:image:type" content="image/png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="1200" />
+<meta property="og:image:alt" content="Logo Đại học Đà Nẵng UDN" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Xếp Nguyện Vọng Thử" />
+<meta name="twitter:description" content="Công cụ xếp thử 15 nguyện vọng đại học, so sánh điểm chuẩn nhiều năm và đánh giá mức độ an toàn theo điểm của bạn." />
+<meta name="twitter:image" content="https://cdn.haitrieu.com/wp-content/uploads/2022/03/Logo-DH-Da-Nang-UDN.png" />
+<!-- Khi deploy lên domain thật, nếu muốn Messenger nhận đúng URL chuẩn thì thêm dòng dưới và đổi thành link web của bạn:
+<link rel="canonical" href="https://ten-mien-cua-ban/" />
+<meta property="og:url" content="https://ten-mien-cua-ban/" />
+-->
 <style>
 :root{
   --bg:#f6f8fc;--panel:#fff;--text:#0f172a;--muted:#64748b;--line:#e2e8f0;--soft:#f1f5f9;
@@ -13,7 +40,34 @@
 }
 *{box-sizing:border-box} html{scroll-behavior:smooth} body{margin:0;font-family:Inter,system-ui,-apple-system,Segoe UI,Arial,sans-serif;background:radial-gradient(circle at top left,#dbeafe 0,transparent 32%),var(--bg);color:var(--text)}
 .app{max-width:1320px;margin:auto;padding:20px}.hero{background:linear-gradient(135deg,#0f172a,#1e3a8a 65%,#2563eb);color:white;border-radius:28px;padding:28px;box-shadow:var(--shadow);position:relative;overflow:hidden}.hero:after{content:"";position:absolute;right:-100px;top:-130px;width:330px;height:330px;border-radius:50%;background:rgba(255,255,255,.13)}.hero>*{position:relative;z-index:1}.badge{display:inline-flex;padding:8px 12px;border:1px solid rgba(255,255,255,.25);border-radius:999px;background:rgba(255,255,255,.14);font-size:13px;gap:8px}.hero h1{font-size:clamp(29px,5vw,52px);line-height:1.04;margin:14px 0 8px}.hero p{color:#dbeafe;line-height:1.55;max-width:900px;margin:0}.controls{display:grid;grid-template-columns:1fr 1fr 1fr auto;gap:12px;margin-top:18px}.control,input,select,textarea{width:100%;border:1px solid var(--line);border-radius:14px;padding:12px 14px;font:inherit;background:white;color:var(--text);outline:none}.hero input,.hero select{border-color:rgba(255,255,255,.35)}.btn{border:0;border-radius:14px;padding:12px 16px;background:var(--pri);color:white;font-weight:700;cursor:pointer;box-shadow:0 8px 18px rgba(37,99,235,.18)}.btn:hover{background:var(--pri2)}.btn.secondary{background:#e0ecff;color:#1e40af;box-shadow:none}.btn.ghost{background:var(--soft);color:#0f172a;box-shadow:none}.btn.danger{background:#fee2e2;color:#991b1b;box-shadow:none}.btn.small{font-size:12px;padding:8px 10px;border-radius:10px}.layout{display:grid;grid-template-columns:minmax(0,1.24fr) minmax(360px,.76fr);gap:18px;margin-top:18px}.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--r);box-shadow:var(--shadow);overflow:hidden}.panel-head{display:flex;justify-content:space-between;gap:14px;align-items:flex-start;padding:18px;border-bottom:1px solid var(--line)}.panel-title{margin:0;font-size:20px}.panel-sub{margin:4px 0 0;color:var(--muted);font-size:14px;line-height:1.45}.panel-body{padding:18px}.filters{display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:10px;margin-bottom:14px}.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(285px,1fr));gap:14px}.card{border:1px solid var(--line);border-radius:18px;background:#fff;padding:15px;display:flex;flex-direction:column;gap:10px}.school{font-size:12px;color:var(--muted);font-weight:800;text-transform:uppercase;letter-spacing:.04em}.major{font-size:17px;font-weight:850;line-height:1.25}.meta{display:flex;gap:7px;flex-wrap:wrap}.pill{display:inline-flex;align-items:center;gap:5px;background:var(--soft);border-radius:999px;padding:6px 9px;font-size:12px;color:#334155}.risk.safe{background:#dcfce7;color:#166534}.risk.ok{background:#dbeafe;color:#1d4ed8}.risk.reach{background:#fef3c7;color:#92400e}.risk.hard{background:#fee2e2;color:#991b1b}.risk.dream{background:#ede9fe;color:#5b21b6}.years{width:100%;border-collapse:separate;border-spacing:0;overflow:hidden;border:1px solid var(--line);border-radius:12px;font-size:12px}.years th,.years td{padding:7px;text-align:center;border-bottom:1px solid var(--line)}.years th{background:#f8fafc;color:#475569}.years tr:last-child td{border-bottom:0}.trend.up{color:#dc2626}.trend.down{color:#16a34a}.trend.flat{color:#64748b}.note{margin:0;color:var(--muted);font-size:13px;line-height:1.45}.list{display:flex;flex-direction:column;gap:9px}.slot{display:grid;grid-template-columns:42px 1fr auto;gap:10px;align-items:center;border:1px dashed #cbd5e1;border-radius:16px;padding:10px;background:#f8fafc}.slot.filled{border-style:solid;background:white}.slot.drag-over{outline:3px solid #93c5fd}.rank{width:34px;height:34px;border-radius:10px;background:#e0ecff;color:#1e40af;display:grid;place-items:center;font-weight:900}.slot-main strong{display:block;line-height:1.25}.slot-main span{display:block;color:var(--muted);font-size:12px;margin-top:3px;line-height:1.35}.slot-actions{display:flex;gap:6px;flex-wrap:wrap;justify-content:flex-end}.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:14px}.stat{border:1px solid var(--line);border-radius:16px;padding:12px;background:#f8fafc}.num{font-size:22px;font-weight:900}.label{color:var(--muted);font-size:12px}.quick-note{background:#fff7ed;border:1px solid #fed7aa;color:#9a3412;border-radius:16px;padding:12px;margin-bottom:14px;line-height:1.45}.footer-actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:14px}.hidden{display:none!important}.custom-box{display:grid;grid-template-columns:1fr 1fr 1fr;gap:10px;margin:0 0 14px;padding:14px;border:1px dashed #93c5fd;border-radius:16px;background:#f8fbff}.custom-box .wide{grid-column:1/-1}.toast{position:fixed;left:50%;bottom:18px;transform:translateX(-50%) translateY(20px);opacity:0;background:#0f172a;color:white;padding:11px 14px;border-radius:999px;box-shadow:var(--shadow);transition:.2s;z-index:50}.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}details{margin-top:14px;border:1px solid var(--line);border-radius:16px;padding:12px;background:#f8fafc}summary{cursor:pointer;font-weight:850}.source-list{color:var(--muted);font-size:13px;line-height:1.55}.source-list a{color:#1d4ed8}.bar{height:8px;border-radius:999px;background:#e2e8f0;overflow:hidden}.bar span{display:block;height:100%;background:linear-gradient(90deg,#60a5fa,#2563eb);border-radius:999px}.rec{display:grid;gap:8px}.rec-row{display:flex;gap:8px;align-items:center;justify-content:space-between;background:#f8fafc;border:1px solid var(--line);padding:9px;border-radius:12px}.rec-row b{font-size:13px}.rec-row span{font-size:12px;color:var(--muted)}
-@media(max-width:980px){.layout{grid-template-columns:1fr}.controls,.filters{grid-template-columns:1fr}.slot{grid-template-columns:36px 1fr}.slot-actions{grid-column:2}.custom-box{grid-template-columns:1fr}.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* Dark mode mặc định: không cần nút bật/tắt */
+:root{
+  --bg:#07111f;--panel:#0f172a;--text:#e5edf7;--muted:#94a3b8;--line:#243247;--soft:#182235;
+  --pri:#60a5fa;--pri2:#3b82f6;--good:#4ade80;--warn:#fbbf24;--danger:#fb7185;--purple:#a78bfa;
+  --shadow:0 18px 44px rgba(0,0,0,.38);--r:18px;
+}
+html{color-scheme:dark}
+body{background:radial-gradient(circle at top left,rgba(37,99,235,.22) 0,transparent 34%),linear-gradient(180deg,#07111f,#0b1220 48%,#111827);color:var(--text)}
+.hero{background:linear-gradient(135deg,#020617,#0f172a 54%,#1d4ed8);border:1px solid rgba(148,163,184,.22)}
+.hero p{color:#cbd5e1}.badge{background:rgba(15,23,42,.52);border-color:rgba(226,232,240,.18)}
+.control,input,select,textarea{background:#111c2f;color:var(--text);border-color:var(--line)}
+.hero input,.hero select{background:rgba(15,23,42,.86);color:#e5edf7;border-color:rgba(148,163,184,.35)}
+input::placeholder,textarea::placeholder{color:#64748b}.panel{background:rgba(15,23,42,.96);border-color:var(--line)}
+.card,.slot.filled{background:#111c2f;border-color:var(--line)}.slot{background:#0b1220;border-color:#334155}.slot.drag-over{outline-color:#60a5fa}
+.stat,details,.rec-row{background:#0b1220;border-color:var(--line)}.custom-box{background:#0b1220;border-color:#3b82f6}
+.btn{box-shadow:0 10px 22px rgba(59,130,246,.18)}.btn.secondary{background:#172554;color:#bfdbfe}.btn.ghost{background:#1e293b;color:#e2e8f0}.btn.danger{background:#3b1118;color:#fecdd3}
+.pill{background:#1e293b;color:#cbd5e1}.rank{background:#172554;color:#bfdbfe}.quick-note{background:#231a0b;border-color:#7c4a12;color:#fed7aa}
+.years{border-color:var(--line)}.years th{background:#0b1220;color:#cbd5e1}.years th,.years td{border-color:var(--line)}
+.risk.safe{background:#052e16;color:#86efac}.risk.ok{background:#172554;color:#bfdbfe}.risk.reach{background:#422006;color:#fde68a}.risk.hard{background:#450a0a;color:#fecaca}.risk.dream{background:#2e1065;color:#ddd6fe}
+.trend.up{color:#fca5a5}.trend.down{color:#86efac}.trend.flat{color:#94a3b8}.source-list a{color:#93c5fd}
+.bar{background:#1e293b}.bar span{background:linear-gradient(90deg,#93c5fd,#3b82f6)}.toast{background:#e5edf7;color:#0f172a}
+
+/* Tối ưu responsive cho điện thoại */
+button,input,select,textarea{font-size:16px;min-height:48px}button,.btn,label.btn{-webkit-tap-highlight-color:transparent;touch-action:manipulation}.card,.panel,.slot,.slot-main{min-width:0}.major,.slot-main strong,.slot-main span,.school,.note{overflow-wrap:anywhere}.card-actions{display:flex;gap:8px;flex-wrap:wrap}.years{table-layout:fixed}.source-list{overflow-wrap:anywhere}.toast{max-width:calc(100vw - 28px);text-align:center;bottom:calc(14px + env(safe-area-inset-bottom))}
+@media(max-width:1080px){.layout{grid-template-columns:1fr}.controls{grid-template-columns:1fr 1fr}.filters{grid-template-columns:1fr 1fr}.filters input{grid-column:1/-1}.panel-head{align-items:stretch}.panel-head .btn{white-space:nowrap}.slot{grid-template-columns:40px 1fr}.slot-actions{grid-column:2;justify-content:flex-start}.custom-box{grid-template-columns:1fr 1fr}.stats{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:720px){.app{padding:12px}.hero{border-radius:22px;padding:20px}.hero h1{font-size:clamp(30px,10vw,40px)}.hero p{font-size:14px}.badge{font-size:12px;line-height:1.35}.controls,.filters,.custom-box{grid-template-columns:1fr}.layout{gap:12px;margin-top:12px}.panel{border-radius:16px}.panel-head{flex-direction:column;padding:15px}.panel-head .btn,.footer-actions .btn,.footer-actions label.btn{width:100%;justify-content:center;text-align:center}.panel-body{padding:14px}.grid{grid-template-columns:1fr;gap:12px}.card{border-radius:16px;padding:14px}.major{font-size:16px}.pill{font-size:11.5px;padding:6px 8px}.years{font-size:11px}.years th,.years td{padding:6px 3px}.stats{grid-template-columns:repeat(2,1fr);gap:8px}.stat{padding:10px}.num{font-size:20px}.quick-note{font-size:13px;padding:11px}.rec-row{align-items:flex-start;flex-direction:column}.slot{grid-template-columns:36px 1fr;align-items:start;padding:10px;border-radius:14px}.rank{width:32px;height:32px}.slot-actions{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr);gap:7px}.slot-actions .btn{width:100%;padding:9px 6px}.card-actions{display:grid;grid-template-columns:1fr 1fr}.card-actions .btn{width:100%;padding:10px 8px}.card-actions .danger{grid-column:1/-1}.footer-actions{display:grid;grid-template-columns:1fr;gap:8px}details{font-size:14px}.toast{border-radius:14px}}
+@media(max-width:420px){.app{padding:10px}.hero{padding:18px;border-radius:18px}.controls{gap:9px}.panel-head{padding:13px}.panel-body{padding:12px}.panel-title{font-size:18px}.panel-sub{font-size:13px}.card-actions{grid-template-columns:1fr}.years{font-size:10.5px}.years th,.years td{padding:5px 2px}.slot-actions{grid-template-columns:repeat(2,1fr)}.custom-box{padding:12px}.quick-note{font-size:12.5px}.meta{gap:6px}}
 @media print{body{background:white}.hero,.filters,.footer-actions,.card-actions,#toast,.custom-box,.source-list details{display:none}.layout{grid-template-columns:1fr}.panel{box-shadow:none}.slot{break-inside:avoid}}
 </style>
 </head>
@@ -22,7 +76,7 @@
   <section class="hero">
     <div class="badge">🎓 Bản nhiều năm · xét rủi ro theo dao động điểm</div>
     <h1>Máy xếp thử 15 nguyện vọng</h1>
-    <p>Không chỉ lấy mỗi điểm chuẩn 2025. Bản này xem lịch sử 2022–2025 nếu có dữ liệu, tính mốc bảo thủ theo <b>điểm cao nhất + biên độ tăng</b>, rồi gợi ý ngành nào mơ ước, vừa sức, an toàn.</p>
+    <p>Không chỉ lấy mỗi điểm chuẩn 2025. Bản này xem lịch sử 2023–2025 nếu có dữ liệu, tính mốc bảo thủ theo <b>điểm cao nhất + biên độ tăng</b>, rồi gợi ý ngành nào mơ ước, vừa sức, an toàn.</p>
     <div class="controls">
       <input id="scoreInput" class="control" type="number" step="0.01" min="0" max="30" placeholder="Nhập điểm xét tuyển của bạn, ví dụ 24.75" />
       <select id="riskMode">
@@ -57,7 +111,6 @@
           <input id="customMajor" placeholder="Tên ngành" />
           <input id="customCode" placeholder="Mã ngành" />
           <input id="customCombos" placeholder="Tổ hợp, ví dụ A00; A01" />
-          <input id="custom2022" type="number" step="0.01" placeholder="Điểm 2022 nếu có" />
           <input id="custom2023" type="number" step="0.01" placeholder="Điểm 2023 nếu có" />
           <input id="custom2024" type="number" step="0.01" placeholder="Điểm 2024 nếu có" />
           <input id="custom2025" type="number" step="0.01" placeholder="Điểm 2025 nếu có" />
@@ -106,7 +159,7 @@
 <div id="toast" class="toast"></div>
 <script>
 const STORAGE_KEY='nv-simulator-v2';
-const YEARS=[2022,2023,2024,2025];
+const YEARS=[2023,2024,2025];
 const basePrograms=[
  {id:'dut-ai',school:'ĐH Bách khoa Đà Nẵng',code:'7480201B',major:'CNTT - Khoa học dữ liệu & Trí tuệ nhân tạo',combos:'A00; A01; X06; X26',hist:{2024:27.11,2025:27.20},note:'Ngành top điểm của DUT, nên xếp nếu thật sự thích.'},
  {id:'dut-cntt',school:'ĐH Bách khoa Đà Nẵng',code:'7480201',major:'Công nghệ thông tin - Đặc thù, hợp tác doanh nghiệp',combos:'A00; A01; X06; X26',hist:{2024:26.10,2025:25.57},note:'CNTT chính ở DUT, cạnh tranh cao.'},
@@ -179,7 +232,7 @@ window.deleteCustom=id=>{programs=programs.filter(p=>p.id!==id);selected=selecte
 function bindDrag(){let from=null;document.querySelectorAll('.slot.filled').forEach(el=>el.addEventListener('dragstart',e=>{from=+el.dataset.index;e.dataTransfer.effectAllowed='move'}));document.querySelectorAll('.slot').forEach(el=>{el.addEventListener('dragover',e=>{e.preventDefault();el.classList.add('drag-over')});el.addEventListener('dragleave',()=>el.classList.remove('drag-over'));el.addEventListener('drop',e=>{e.preventDefault();el.classList.remove('drag-over');let to=+el.dataset.index;if(from==null||!selected[from])return;let [it]=selected.splice(from,1);selected.splice(Math.min(to,selected.length),0,it);renderWishlist()})})}
 $('scoreInput').addEventListener('input',e=>{userScore=e.target.value;renderAll()});['riskMode','ambition','searchInput','schoolFilter','sortSelect'].forEach(id=>$(id).addEventListener('change',renderAll));$('searchInput').addEventListener('input',renderCards);$('jumpBtn').onclick=()=>$('main').scrollIntoView({behavior:'smooth'});
 $('addCustomBtn').onclick=()=>$('customBox').classList.toggle('hidden');$('cancelCustomBtn').onclick=()=>$('customBox').classList.add('hidden');
-$('saveCustomBtn').onclick=()=>{let school=$('customSchool').value.trim(),major=$('customMajor').value.trim();if(!school||!major)return toast('Nhập trường và ngành');let hist={};['2022','2023','2024','2025'].forEach(y=>{let v=parseFloat($('custom'+y).value);if(!Number.isNaN(v))hist[y]=v});let p={id:'custom-'+Date.now(),custom:true,school,major,code:$('customCode').value.trim()||'Tự thêm',combos:$('customCombos').value.trim()||'Tự nhập',hist,note:$('customNote').value.trim()||'Ngành tự thêm'};let pr=parseFloat($('customPredict').value);if(!Number.isNaN(pr))p.predict=pr;programs.push(p);['customSchool','customMajor','customCode','customCombos','custom2022','custom2023','custom2024','custom2025','customPredict','customNote'].forEach(id=>$(id).value='');$('customBox').classList.add('hidden');populateSchool();renderAll();toast('Đã thêm ngành')}
+$('saveCustomBtn').onclick=()=>{let school=$('customSchool').value.trim(),major=$('customMajor').value.trim();if(!school||!major)return toast('Nhập trường và ngành');let hist={};['2023','2024','2025'].forEach(y=>{let v=parseFloat($('custom'+y).value);if(!Number.isNaN(v))hist[y]=v});let p={id:'custom-'+Date.now(),custom:true,school,major,code:$('customCode').value.trim()||'Tự thêm',combos:$('customCombos').value.trim()||'Tự nhập',hist,note:$('customNote').value.trim()||'Ngành tự thêm'};let pr=parseFloat($('customPredict').value);if(!Number.isNaN(pr))p.predict=pr;programs.push(p);['customSchool','customMajor','customCode','customCombos','custom2023','custom2024','custom2025','customPredict','customNote'].forEach(id=>$(id).value='');$('customBox').classList.add('hidden');populateSchool();renderAll();toast('Đã thêm ngành')}
 $('strategyBtn').onclick=()=>{if(!selected.length)return toast('Chưa có NV');let s=parseFloat(userScore);if(Number.isNaN(s))return toast('Nhập điểm trước');selected.sort((a,b)=>{const bucket=p=>{let c=riskOf(p).cls;return c==='hard'?0:c==='dream'?1:c==='reach'?2:c==='ok'?3:4};return bucket(a)-bucket(b)||benchmark(b)-benchmark(a)});renderWishlist();toast('Đã xếp mơ ước → an toàn')}
 $('copyBtn').onclick=async()=>{if(!selected.length)return toast('Chưa có NV');let text=selected.map((p,i)=>`${i+1}. ${p.school} - ${p.major} (${p.code}) - mốc ${fmt(benchmark(p))} - ${riskOf(p).label}`).join('\n');try{await navigator.clipboard.writeText(text);toast('Đã copy')}catch(e){prompt('Copy danh sách:',text)}}
 $('exportBtn').onclick=()=>{let data={exportedAt:new Date().toISOString(),userScore,mode:$('riskMode').value,ambition:$('ambition').value,selected,customPrograms:programs.filter(p=>p.custom)};let blob=new Blob([JSON.stringify(data,null,2)],{type:'application/json'});let url=URL.createObjectURL(blob);let a=document.createElement('a');a.href=url;a.download='nguyen-vong-cua-toi-v2.json';a.click();URL.revokeObjectURL(url)}
