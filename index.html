@@ -1,680 +1,513 @@
 <!doctype html>
 <html lang="vi">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-<title>Xếp Nguyện Vọng Thử</title>
-<meta name="title" content="Xếp Nguyện Vọng Thử" />
-<meta name="description" content="Công cụ xếp thử 15 nguyện vọng đại học, so sánh điểm chuẩn nhiều năm và tự lưu trên trình duyệt." />
-<meta name="keywords" content="xếp nguyện vọng thử, nguyện vọng đại học, điểm chuẩn đại học, Đại học Đà Nẵng, Bách khoa Đà Nẵng, VKU, Sư phạm Tin học" />
-<meta name="author" content="Tuan Vu" />
-<meta name="theme-color" content="#0b1020" />
-<link rel="icon" type="image/png" href="https://cdn.haitrieu.com/wp-content/uploads/2022/03/Logo-DH-Da-Nang-UDN.png" />
-<link rel="shortcut icon" type="image/png" href="https://cdn.haitrieu.com/wp-content/uploads/2022/03/Logo-DH-Da-Nang-UDN.png" />
-<link rel="apple-touch-icon" href="https://cdn.haitrieu.com/wp-content/uploads/2022/03/Logo-DH-Da-Nang-UDN.png" />
-<meta property="og:locale" content="vi_VN" />
-<meta property="og:type" content="website" />
-<meta property="og:title" content="Xếp Nguyện Vọng Thử" />
-<meta property="og:description" content="Nhập điểm, chọn ngành, xếp thử 15 nguyện vọng. Dữ liệu tự lưu riêng trên trình duyệt của từng người." />
-<meta property="og:site_name" content="Xếp Nguyện Vọng Thử" />
-<meta property="og:image" content="https://cdn.haitrieu.com/wp-content/uploads/2022/03/Logo-DH-Da-Nang-UDN.png" />
-<meta property="og:image:secure_url" content="https://cdn.haitrieu.com/wp-content/uploads/2022/03/Logo-DH-Da-Nang-UDN.png" />
-<meta property="og:image:type" content="image/png" />
-<meta property="og:image:width" content="1200" />
-<meta property="og:image:height" content="1200" />
-<meta property="og:image:alt" content="Logo Đại học Đà Nẵng UDN" />
-<meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:title" content="Xếp Nguyện Vọng Thử" />
-<meta name="twitter:description" content="Công cụ xếp thử 15 nguyện vọng đại học, tự lưu trên trình duyệt." />
-<meta name="twitter:image" content="https://cdn.haitrieu.com/wp-content/uploads/2022/03/Logo-DH-Da-Nang-UDN.png" />
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
-<style>
-:root{
-  color-scheme:dark;
-  --bg:#090f1d;
-  --bg2:#0d1628;
-  --card:#101b2e;
-  --card2:#131f35;
-  --line:#253451;
-  --text:#eef4ff;
-  --muted:#91a2bd;
-  --soft:#1a2942;
-  --blue:#6db5ff;
-  --blue2:#3b82f6;
-  --green:#54d58a;
-  --yellow:#ffd166;
-  --red:#ff7b92;
-  --purple:#b894ff;
-  --radius:20px;
-  --shadow:0 18px 45px rgba(0,0,0,.32);
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth;font-synthesis-weight:none}
-body{
-  margin:0;
-  font-family:Inter,sans-serif;
-  background:
-    radial-gradient(circle at 18% -8%, rgba(59,130,246,.28), transparent 34%),
-    radial-gradient(circle at 90% 6%, rgba(168,85,247,.16), transparent 28%),
-    linear-gradient(180deg,var(--bg),#0a1221 45%,#0b1020);
-  color:var(--text);
-  min-height:100vh;
-}
-button,input,select,textarea{font:inherit}
-body,button,input,select,textarea,h1,h2,h3,p,span,div,table,th,td{font-family:Inter,sans-serif}
-button{-webkit-tap-highlight-color:transparent}
-.app{width:min(1180px,100%);margin:0 auto;padding:14px}
-.topbar{
-  display:grid;
-  grid-template-columns:1fr minmax(280px,520px);
-  gap:12px;
-  align-items:center;
-  margin-bottom:12px;
-}
-.brand{
-  min-height:84px;
-  padding:16px 18px;
-  border:1px solid rgba(148,163,184,.18);
-  border-radius:24px;
-  background:linear-gradient(135deg,rgba(16,27,46,.92),rgba(14,30,58,.9));
-  box-shadow:var(--shadow);
-}
-.kicker{font-size:13px;color:#bdd7ff;font-weight:800;margin-bottom:4px}
-h1{font-size:clamp(28px,4vw,48px);line-height:1.05;letter-spacing:0;margin:0 0 6px}
-.subtitle{margin:0;color:var(--muted);font-size:15px;line-height:1.45}
-.scorebox{
-  padding:14px;
-  border:1px solid rgba(148,163,184,.18);
-  border-radius:24px;
-  background:rgba(16,27,46,.86);
-  box-shadow:var(--shadow);
-}
-.scorebox label{display:block;color:#c8d8ee;font-weight:800;font-size:14px;margin-bottom:8px}
-.scoreline{display:grid;grid-template-columns:1fr auto;gap:10px}
-input,select,textarea{
-  width:100%;
-  min-height:48px;
-  border:1px solid var(--line);
-  border-radius:16px;
-  background:#0b1425;
-  color:var(--text);
-  padding:12px 14px;
-  outline:none;
-}
-input::placeholder{color:#71829d}
-input:focus,select:focus,textarea:focus{border-color:#60a5fa;box-shadow:0 0 0 4px rgba(96,165,250,.12)}
-.btn{
-  min-height:48px;
-  border:0;
-  border-radius:16px;
-  padding:0 16px;
-  background:linear-gradient(135deg,#78bdff,#428ff2);
-  color:#061120;
-  font-weight:900;
-  cursor:pointer;
-  white-space:nowrap;
-}
-.btn:hover{filter:brightness(1.06)}
-.btn.ghost{background:#1a2942;color:#eaf2ff}
-.btn.soft{background:#172554;color:#bfdbfe}
-.btn.danger{background:#3a1722;color:#ffc5d1}
-.btn.icon{width:48px;padding:0;display:grid;place-items:center;font-size:22px}
-.btn.small{min-height:38px;padding:0 12px;border-radius:12px;font-size:14px}
-.meta-row{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:10px}
-.main{display:grid;grid-template-columns:minmax(0,1fr) 420px;gap:14px;align-items:start}
-.panel{
-  border:1px solid rgba(148,163,184,.18);
-  border-radius:24px;
-  background:rgba(16,27,46,.9);
-  box-shadow:var(--shadow);
-  overflow:hidden;
-}
-.panel-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:12px;
-  padding:16px 16px 12px;
-  border-bottom:1px solid rgba(148,163,184,.14);
-}
-.panel-title{margin:0;font-size:22px;letter-spacing:0}
-.panel-sub{margin:3px 0 0;color:var(--muted);font-size:14px;line-height:1.35}
-.panel-body{padding:14px}
-.planner{position:sticky;top:12px}
-.planner-head-actions{display:flex;gap:8px;align-items:center}
-.count-pill{
-  display:inline-flex;align-items:center;justify-content:center;
-  min-width:54px;height:36px;padding:0 10px;border-radius:999px;
-  background:#0b1425;border:1px solid var(--line);color:#cbdcff;font-weight:900;
-}
-.wishlist{display:grid;gap:8px}
-.slot{
-  display:grid;
-  grid-template-columns:38px 1fr auto;
-  gap:10px;
-  align-items:center;
-  border:1px solid var(--line);
-  border-radius:18px;
-  background:#0b1425;
-  padding:10px;
-}
-.slot.drag-over{outline:3px solid rgba(96,165,250,.35)}
-.rank{
-  width:36px;height:36px;border-radius:13px;
-  display:grid;place-items:center;
-  background:#172a49;
-  color:#b9d9ff;
-  font-weight:950;
-}
-.slot-main strong{display:block;font-size:16px;line-height:1.25}
-.slot-main span{display:block;margin-top:3px;color:var(--muted);font-size:13px;line-height:1.3}
-.slot-actions{display:flex;gap:6px;align-items:center}
-.empty-slot{
-  border-style:dashed;
-  background:rgba(11,20,37,.58);
-}
-.empty-slot .slot-main strong{color:#dbeafe}
-.footer-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:12px}
-.footer-actions .danger{grid-column:1/-1}
-.filters{display:grid;grid-template-columns:1.2fr .85fr .75fr;gap:8px;margin-bottom:12px}
-.catalog-list{display:grid;grid-template-columns:repeat(auto-fill,minmax(310px,1fr));gap:10px}
-.program-card{
-  border:1px solid rgba(148,163,184,.16);
-  border-radius:20px;
-  background:#0d182a;
-  padding:12px;
-  display:grid;
-  grid-template-columns:1fr auto;
-  gap:10px;
-  align-items:start;
-}
-.program-card:hover{border-color:rgba(96,165,250,.45);background:#101d31}
-.school{font-size:12px;text-transform:uppercase;letter-spacing:.04em;color:#8ea1bf;font-weight:900}
-.major{margin-top:4px;font-size:17px;font-weight:950;line-height:1.25;letter-spacing:0}
-.tags{display:flex;gap:6px;flex-wrap:wrap;margin-top:9px}
-.tag{
-  display:inline-flex;align-items:center;gap:4px;
-  min-height:28px;padding:4px 8px;border-radius:999px;
-  background:#16243b;color:#cddcf0;font-size:12px;font-weight:800;
-}
-.score-tag{background:rgba(109,181,255,.16);color:#a8d4ff}
-.risk.safe{background:rgba(84,213,138,.16);color:#95f0ba}
-.risk.ok{background:rgba(109,181,255,.16);color:#a8d4ff}
-.risk.reach{background:rgba(255,209,102,.16);color:#ffe19a}
-.risk.dream{background:rgba(184,148,255,.16);color:#d4c0ff}
-.risk.hard{background:rgba(255,123,146,.16);color:#ffb1bf}
-.add-col{display:grid;gap:8px;justify-items:end}
-details.more{grid-column:1/-1;margin-top:2px}
-summary{cursor:pointer;color:#bdd7ff;font-weight:850;list-style:none}
-summary::-webkit-details-marker{display:none}
-.detail-box{margin-top:10px;padding:10px;border-radius:16px;background:#0b1425;border:1px solid var(--line)}
-.year-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:6px;margin-bottom:8px}
-.year-cell{background:#111f35;border:1px solid #21304c;border-radius:12px;padding:8px 6px;text-align:center}
-.year-cell small{display:block;color:#8ea1bf;font-size:11px;margin-bottom:3px}
-.year-cell b{font-size:14px}
-.note{margin:8px 0 0;color:var(--muted);font-size:13px;line-height:1.45}
-.more-actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}
-.custom-box{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:12px;padding:12px;border:1px dashed #315e9b;border-radius:20px;background:#0b1425}
-.custom-box .wide{grid-column:1/-1}
-.hidden{display:none!important}
-.hidden-tools{margin-top:12px;border-top:1px solid rgba(148,163,184,.14);padding-top:12px}
-.hidden-list{display:grid;gap:8px;margin-top:8px}
-.hidden-item{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center;padding:9px;border:1px solid var(--line);border-radius:14px;background:#0b1425}
-.source-box{margin-top:12px;padding:12px;border-radius:18px;background:#0b1425;border:1px solid var(--line);color:var(--muted);font-size:13px;line-height:1.45}
-.toast{
-  position:fixed;left:50%;bottom:18px;z-index:80;
-  transform:translateX(-50%) translateY(20px);
-  opacity:0;transition:.18s;
-  background:#eaf2ff;color:#07111f;font-weight:900;
-  padding:11px 14px;border-radius:999px;box-shadow:var(--shadow);
-}
-.toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
-#printArea{display:none}
-@media(max-width:940px){
-  .app{padding:10px}
-  .topbar{grid-template-columns:1fr;gap:10px}
-  .brand{min-height:auto;padding:14px;border-radius:20px}
-  h1{font-size:34px}
-  .subtitle{font-size:14px}
-  .scorebox{padding:12px;border-radius:20px}
-  .scoreline{grid-template-columns:1fr 52px}
-  .meta-row{grid-template-columns:1fr;display:none}
-  .main{grid-template-columns:1fr;gap:10px}
-  .planner{position:static;order:-1}
-  .catalog{order:2}
-  .panel{border-radius:20px}
-  .panel-head{padding:14px 12px 10px}
-  .panel-title{font-size:21px}
-  .panel-body{padding:10px}
-  .filters{grid-template-columns:1fr;gap:7px}
-  .catalog-list{grid-template-columns:1fr;gap:8px}
-  .program-card{border-radius:18px}
-  .slot{grid-template-columns:36px 1fr;gap:9px}
-  .slot-actions{grid-column:1/-1;display:grid;grid-template-columns:repeat(4,1fr)}
-  .slot-actions .btn{width:100%}
-  .empty-slot .slot-actions{grid-template-columns:1fr}
-  .footer-actions{grid-template-columns:1fr 1fr}
-  .custom-box{grid-template-columns:1fr}
-  .year-grid{grid-template-columns:repeat(3,1fr)}
-}
-@media(max-width:480px){
-  .app{padding:8px}
-  .brand{padding:12px}
-  .kicker{font-size:12px}
-  h1{font-size:30px}
-  .subtitle{font-size:13px}
-  .scorebox label{font-size:13px}
-  input,select,textarea,.btn{min-height:48px;font-size:16px}
-  .panel-title{font-size:20px}
-  .panel-sub{font-size:13px}
-  .major{font-size:16px}
-  .slot-main strong{font-size:15.5px}
-  .slot-main span{font-size:12.5px}
-  .program-card{grid-template-columns:1fr 48px}
-  .add-col .btn.ghost{display:none}
-}
-@media print{
-  @page{size:A4;margin:12mm}
-  body{background:white!important;color:#111!important}
-  body *{visibility:hidden!important;box-shadow:none!important}
-  #printArea,#printArea *{visibility:visible!important}
-  #printArea{display:block!important;position:absolute;left:0;top:0;width:100%;font-family:Inter,sans-serif!important;color:#111!important}
-  #printArea *{font-family:Inter,sans-serif!important}
-  .print-title{font-family:Inter,sans-serif!important;font-size:22pt;font-weight:800;margin:0 0 4pt;letter-spacing:0}
-  .print-meta{font-family:Inter,sans-serif!important;font-size:10.5pt;color:#444;margin:0 0 10pt}
-  .print-table{width:100%;border-collapse:collapse;font-family:Inter,sans-serif!important;font-size:10.5pt}
-  .print-table th,.print-table td{border:1px solid #999;padding:6pt 7pt;vertical-align:top}
-  .print-table th{background:#f1f1f1;text-align:left}
-  .print-rank{width:34pt;text-align:center;font-weight:700}
-}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Xếp Nguyện Vọng Thử</title>
+  <meta name="description" content="Công cụ xếp thử 15 nguyện vọng đại học, tham khảo điểm chuẩn và lưu riêng trên trình duyệt.">
+  <meta name="keywords" content="xếp nguyện vọng, tuyển sinh đại học, điểm chuẩn, Đại học Đà Nẵng, Bách khoa Đà Nẵng, VKU, Sư phạm Kỹ thuật">
+  <meta name="theme-color" content="#07111f">
+  <link rel="canonical" href="https://example.com/">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Xếp Nguyện Vọng Thử">
+  <meta property="og:description" content="Nhập điểm, chọn ngành và sắp xếp thử 15 nguyện vọng. Dữ liệu tự lưu riêng trên trình duyệt.">
+  <meta property="og:site_name" content="Xếp Nguyện Vọng Thử">
+  <meta property="og:url" content="https://example.com/">
+  <meta property="og:image" content="https://haitrieu.com/wp-content/uploads/2022/01/Logo-Dai-hoc-Da-Nang-UDN.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Xếp Nguyện Vọng Thử">
+  <meta name="twitter:description" content="Công cụ xếp thử 15 nguyện vọng đại học.">
+  <meta name="twitter:image" content="https://haitrieu.com/wp-content/uploads/2022/01/Logo-Dai-hoc-Da-Nang-UDN.png">
+  <link rel="icon" href="https://haitrieu.com/wp-content/uploads/2022/01/Logo-Dai-hoc-Da-Nang-UDN.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      color-scheme: dark;
+      --bg:#070d18;
+      --panel:#0d1727;
+      --panel-2:#111f34;
+      --line:#223653;
+      --soft:#172942;
+      --text:#f3f7ff;
+      --muted:#a9bdd8;
+      --muted2:#7e93b2;
+      --blue:#5aa8ff;
+      --blue2:#7bbdff;
+      --green:#4bd18b;
+      --yellow:#ffd166;
+      --red:#ff6b7a;
+      --danger:#431521;
+      --shadow:0 18px 50px rgba(0,0,0,.24);
+      --radius:22px;
+    }
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      font-family:Inter, sans-serif;
+      background:
+        radial-gradient(circle at 100% 0%, rgba(76,29,149,.42), transparent 32rem),
+        radial-gradient(circle at 0% 10%, rgba(14,116,144,.28), transparent 34rem),
+        var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      font-size:16px;
+      line-height:1.45;
+    }
+    button,input,select{font:inherit}
+    button{cursor:pointer;-webkit-tap-highlight-color:transparent}
+    .wrap{width:min(1450px,calc(100% - 32px));margin:22px auto 44px}
+    .top{display:grid;grid-template-columns:1.15fr .95fr;gap:16px;margin-bottom:16px;align-items:stretch}
+    .card{background:linear-gradient(180deg,rgba(15,26,43,.97),rgba(10,18,31,.98));border:1px solid var(--line);border-radius:var(--radius);box-shadow:var(--shadow)}
+    .hero{padding:22px 24px}
+    .eyebrow{font-size:14px;color:#c9dcf8;font-weight:800;letter-spacing:.01em;margin-bottom:6px}
+    h1{margin:0;font-size:clamp(38px,5.4vw,68px);line-height:.98;letter-spacing:-.055em;font-weight:800}
+    .hero p{color:var(--muted);font-size:18px;margin:10px 0 0;max-width:760px}
+    .score{padding:18px;display:grid;gap:12px;align-content:start}
+    .score label{font-weight:800;color:#dfeaff;margin-bottom:-6px;display:block}
+    .score-row{display:grid;grid-template-columns:1fr 60px;gap:12px;align-items:center}
+    input,select{background:#081322;color:var(--text);border:1px solid var(--line);border-radius:18px;min-height:58px;padding:0 18px;font-size:18px;outline:none;width:100%}
+    input::placeholder{color:#7890b2}
+    input:focus,select:focus{border-color:#589bea;box-shadow:0 0 0 4px rgba(90,168,255,.14)}
+    .btn{border:0;border-radius:18px;background:var(--soft);color:var(--text);font-weight:800;min-height:58px;padding:0 20px;display:inline-flex;align-items:center;justify-content:center;gap:10px;transition:.16s ease;white-space:nowrap}
+    .btn:hover{transform:translateY(-1px);filter:brightness(1.06)}
+    .btn.primary{background:linear-gradient(180deg,var(--blue2),var(--blue));color:#06111f;font-size:24px;min-width:60px;padding:0 18px}
+    .btn.danger{background:var(--danger);color:#ffd1d7}
+    .btn.ghost{background:#0a1525;border:1px solid var(--line);color:#cfe2ff}
+    .controls{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+    .main{display:grid;grid-template-columns:minmax(0,1.05fr) minmax(340px,.58fr);gap:16px;align-items:start}
+    .section-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 20px 14px;border-bottom:1px solid rgba(34,54,83,.8)}
+    .section-title{margin:0;font-size:29px;letter-spacing:-.04em;line-height:1;font-weight:800}
+    .section-sub{color:var(--muted);font-size:16px;margin:4px 0 0}
+    .toolbar{display:grid;grid-template-columns:minmax(180px,1fr) minmax(160px,260px) minmax(150px,220px);gap:10px;padding:18px 18px 10px}
+    .programs{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:10px 18px 18px;max-height:calc(100vh - 310px);overflow:auto;scrollbar-color:#2c4368 transparent}
+    .program{position:relative;background:#0b1626;border:1px solid var(--line);border-radius:20px;padding:16px;min-height:146px;display:grid;grid-template-columns:1fr 58px;gap:12px;align-items:start}
+    .school{font-size:13px;letter-spacing:.09em;text-transform:uppercase;color:#9cb5d7;font-weight:800;margin-bottom:7px}
+    .major{font-size:21px;line-height:1.25;font-weight:800;letter-spacing:-.035em;margin:0 0 10px}
+    .badges{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+    .badge{display:inline-flex;align-items:center;justify-content:center;padding:7px 10px;border-radius:999px;background:#10233b;color:#e6f1ff;font-weight:800;font-size:14px;line-height:1}
+    .badge.score-badge{background:#142b48;color:#cfe6ff}
+    .badge.ok{background:rgba(75,209,139,.14);color:#7df0ad}
+    .badge.warn{background:rgba(255,209,102,.14);color:#ffe09a}
+    .badge.hard{background:rgba(255,107,122,.14);color:#ffb1bb}
+    .addbtn{height:58px;width:58px;border-radius:18px;border:0;background:linear-gradient(180deg,var(--blue2),var(--blue));color:#06111f;font-size:28px;font-weight:900;align-self:start}
+    details{grid-column:1 / -1;color:#c8dbf4;margin-top:6px}
+    summary{font-weight:800;color:#dbeaff;cursor:pointer;list-style:none;display:inline-flex;gap:8px;align-items:center}
+    summary::-webkit-details-marker{display:none}
+    summary::before{content:'▸';font-size:12px;color:#91b6e8;transition:.1s}
+    details[open] summary::before{transform:rotate(90deg)}
+    .detail-body{margin-top:10px;padding:12px;border-radius:16px;background:rgba(255,255,255,.035);border:1px solid rgba(255,255,255,.07);color:#aebfda;font-size:14px;display:grid;gap:8px}
+    .detail-body button{justify-self:start;min-height:38px;padding:0 12px;border-radius:12px;font-size:14px}
+    .choice-card{position:sticky;top:14px;overflow:hidden}
+    .chosen{padding:18px;display:grid;gap:10px;max-height:calc(100vh - 330px);overflow:auto;scrollbar-color:#2c4368 transparent}
+    .empty{border:1px dashed #274263;background:rgba(255,255,255,.025);border-radius:18px;padding:18px;display:grid;grid-template-columns:42px 1fr auto;gap:12px;align-items:center;color:#c6d9f4}
+    .empty .plus-mini{width:42px;height:42px;border-radius:14px;background:#142744;display:grid;place-items:center;font-weight:900;font-size:22px;color:#bed9ff}
+    .choice{background:#0b1626;border:1px solid var(--line);border-radius:18px;padding:14px;display:grid;grid-template-columns:44px 1fr;gap:12px;align-items:start}
+    .rank{width:44px;height:44px;border-radius:15px;background:#132641;display:grid;place-items:center;font-weight:900;color:#cfe4ff}
+    .choice h3{margin:0;font-size:18px;line-height:1.25;letter-spacing:-.03em}
+    .choice p{margin:5px 0 0;color:var(--muted);font-size:14px}
+    .choice-actions{grid-column:1/-1;display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin-top:4px}
+    .choice-actions .btn{min-height:42px;border-radius:13px;font-size:15px;padding:0 10px}
+    .count{font-size:18px;font-weight:900;border:1px solid var(--line);border-radius:999px;padding:8px 14px;background:#091628}
+    .actions{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 18px 18px}
+    .actions .danger{grid-column:1/-1}
+    .source-box{margin:0 18px 18px;border:1px solid var(--line);border-radius:18px;padding:0;background:#081322}
+    .source-box summary{padding:14px 16px;width:100%}
+    .source-content{padding:0 16px 16px;color:var(--muted);font-size:14px}
+    .hidden-list{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+    .hidden-pill{display:inline-flex;gap:8px;align-items:center;background:#12223a;border:1px solid var(--line);border-radius:999px;padding:8px 10px;font-size:13px;color:#d8e8ff}
+    .hidden-pill button{border:0;background:transparent;color:#8dc3ff;font-weight:800;padding:0}
+    .toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%) translateY(20px);background:#ebf4ff;color:#07111f;font-weight:800;border-radius:999px;padding:12px 18px;opacity:0;pointer-events:none;transition:.2s;z-index:50;box-shadow:0 10px 30px rgba(0,0,0,.25)}
+    .toast.show{opacity:1;transform:translateX(-50%) translateY(0)}
+    #printArea{display:none}
+    @media (max-width: 980px){
+      .wrap{width:min(100% - 20px,760px);margin-top:10px}
+      .top{grid-template-columns:1fr;gap:10px}
+      .main{grid-template-columns:1fr;gap:10px}
+      .choice-card{position:relative;top:auto;order:-1}
+      .hero{padding:18px}
+      h1{font-size:42px;letter-spacing:-.05em}
+      .hero p{font-size:16px}
+      .score{padding:16px}
+      .score-row{grid-template-columns:1fr 58px}
+      .controls{grid-template-columns:1fr}
+      .toolbar{grid-template-columns:1fr;gap:10px;padding:16px}
+      .programs{grid-template-columns:1fr;max-height:none;padding:0 14px 14px}
+      .program{padding:15px;min-height:132px;grid-template-columns:1fr 56px}
+      .major{font-size:20px}
+      .section-head{padding:18px 16px 12px}
+      .section-title{font-size:28px}
+      .chosen{max-height:none;padding:14px}
+      .actions{padding:0 14px 14px}
+      .source-box{margin:0 14px 14px}
+    }
+    @media (max-width: 560px){
+      body{font-size:16px}
+      .wrap{width:100%;padding:0 10px;margin:8px 0 26px}
+      .card{border-radius:20px}
+      .hero{padding:16px}
+      .eyebrow{font-size:13px}
+      h1{font-size:36px}
+      .score label{font-size:16px}
+      input,select,.btn{min-height:56px;border-radius:16px;font-size:17px}
+      .section-title{font-size:26px}
+      .section-sub{font-size:15px}
+      .empty{grid-template-columns:38px 1fr;gap:10px}
+      .empty .btn{grid-column:1/-1;width:100%}
+      .actions{grid-template-columns:1fr}
+      .program{border-radius:18px}
+      .addbtn{height:56px;width:56px;border-radius:17px}
+    }
+    @media print{
+      @page{size:A4;margin:12mm}
+      body{background:#fff !important;color:#111;font-family:Inter, sans-serif !important;font-size:12px}
+      .wrap,.toast{display:none !important}
+      #printArea{display:block !important;font-family:Inter, sans-serif !important;color:#111}
+      .print-head{display:flex;justify-content:space-between;gap:20px;align-items:flex-start;margin-bottom:12px}
+      .print-head h1{font-size:28px;letter-spacing:-.04em;line-height:1.1;margin:0;color:#111;font-family:Inter, sans-serif !important}
+      .print-head p{margin:3px 0 0;color:#333;font-size:12px}
+      table{border-collapse:collapse;width:100%;font-size:11px;font-family:Inter, sans-serif !important;page-break-inside:avoid}
+      th,td{border:1px solid #777;padding:6px 7px;vertical-align:top;text-align:left}
+      th{font-weight:800;background:#f2f4f7}
+      td:first-child,th:first-child{text-align:center;width:38px;font-weight:800}
+      .print-note{margin-top:10px;font-size:11px;color:#444}
+    }
+  </style>
 </head>
 <body>
-<div class="app">
-  <header class="topbar">
-    <section class="brand">
-      <div class="kicker">🎓 Công cụ xếp thử 15 nguyện vọng</div>
-      <h1>Xếp Nguyện Vọng Thử</h1>
-      <p class="subtitle">Nhập điểm, chọn ngành, sắp xếp theo thứ tự bạn muốn. Mọi thứ tự lưu riêng trên trình duyệt.</p>
-    </section>
-    <section class="scorebox">
-      <label for="scoreInput">Điểm xét tuyển của bạn</label>
-      <div class="scoreline">
-        <input id="scoreInput" type="number" step="0.01" min="0" max="30" placeholder="Ví dụ 24.75" />
-        <button class="btn icon" id="goCatalogBtn" title="Chọn ngành">+</button>
+  <main class="wrap" id="app">
+    <section class="top">
+      <div class="card hero">
+        <div class="eyebrow">🎓 Công cụ xếp thử 15 nguyện vọng</div>
+        <h1>Xếp Nguyện Vọng Thử</h1>
+        <p>Nhập điểm, chọn ngành, sắp xếp theo thứ tự bạn muốn. Mọi thứ tự lưu riêng trên trình duyệt.</p>
       </div>
-      <div class="meta-row">
-        <select id="riskMode">
-          <option value="conservative">Mốc an toàn: bảo thủ</option>
-          <option value="latest">So với năm mới nhất</option>
-          <option value="max">So với cao nhất</option>
-          <option value="avg">So với trung bình</option>
-        </select>
-        <select id="ambition">
-          <option value="normal">Khẩu vị: cân bằng</option>
-          <option value="bold">Mạnh tay hơn</option>
-          <option value="safe">An toàn hơn</option>
-        </select>
-      </div>
-    </section>
-  </header>
-
-  <main class="main">
-    <section class="panel catalog" id="catalogPanel">
-      <div class="panel-head">
-        <div>
-          <h2 class="panel-title" id="catalogTitle">Chọn ngành</h2>
-          <p class="panel-sub">Bấm dấu + để thêm vào danh sách.</p>
+      <div class="card score">
+        <label for="scoreInput">Điểm xét tuyển của bạn</label>
+        <div class="score-row">
+          <input id="scoreInput" inputmode="decimal" placeholder="Ví dụ 24.75" autocomplete="off">
+          <button class="btn primary" id="quickAddBtn" title="Lướt xuống chọn ngành">+</button>
         </div>
-        <button class="btn ghost" id="addCustomBtn">Tự thêm</button>
-      </div>
-      <div class="panel-body">
-        <div class="filters">
-          <input id="searchInput" placeholder="Tìm ngành, trường, mã ngành..." />
-          <select id="schoolFilter"></select>
-          <select id="sortSelect">
-            <option value="risk">Gần điểm của bạn</option>
-            <option value="scoreDesc">Mốc cao → thấp</option>
-            <option value="scoreAsc">Mốc thấp → cao</option>
-            <option value="school">Theo trường</option>
+        <div class="controls">
+          <select id="safetyMode" aria-label="Mốc an toàn">
+            <option value="conservative">Mốc an toàn: bảo thủ</option>
+            <option value="raw">Mốc: điểm chuẩn 2025</option>
+          </select>
+          <select id="riskTaste" aria-label="Khẩu vị">
+            <option value="balanced">Khẩu vị: cân bằng</option>
+            <option value="dream">Nhiều mơ ước hơn</option>
+            <option value="safe">Nhiều an toàn hơn</option>
           </select>
         </div>
-        <div id="customBox" class="custom-box hidden">
-          <input id="customSchool" placeholder="Tên trường" />
-          <input id="customMajor" placeholder="Tên ngành" />
-          <input id="customCode" placeholder="Mã ngành" />
-          <input id="customCombos" placeholder="Tổ hợp" />
-          <input id="custom2022" type="number" step="0.01" placeholder="Điểm 2022 nếu có" />
-          <input id="custom2023" type="number" step="0.01" placeholder="Điểm 2023 nếu có" />
-          <input id="custom2024" type="number" step="0.01" placeholder="Điểm 2024 nếu có" />
-          <input id="custom2025" type="number" step="0.01" placeholder="Điểm 2025 nếu có" />
-          <input id="customPredict" type="number" step="0.01" placeholder="Dự đoán 2026" />
-          <textarea id="customNote" class="wide" rows="2" placeholder="Ghi chú"></textarea>
-          <button class="btn" id="saveCustomBtn">Lưu ngành</button>
-          <button class="btn ghost" id="cancelCustomBtn">Hủy</button>
+      </div>
+    </section>
+
+    <section class="main">
+      <section class="card bank" id="bankSection">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Chọn ngành</h2>
+            <p class="section-sub">Bấm dấu + để thêm vào danh sách.</p>
+          </div>
+          <button class="btn" id="customBtn">Tự thêm</button>
         </div>
-        <div id="cards" class="catalog-list"></div>
-        <div class="hidden-tools" id="hiddenTools"></div>
+        <div class="toolbar">
+          <input id="searchInput" placeholder="Tìm ngành, trường, mã ngành..." autocomplete="off">
+          <select id="schoolFilter"></select>
+          <select id="sortMode">
+            <option value="near">Gần điểm của bạn</option>
+            <option value="school">Theo trường</option>
+            <option value="high">Điểm cao → thấp</option>
+            <option value="low">Điểm thấp → cao</option>
+          </select>
+        </div>
+        <div class="programs" id="programList"></div>
         <details class="source-box">
           <summary>Nguồn dữ liệu</summary>
-          <p>Dữ liệu là mốc tham khảo nhiều năm, không thay thế thông tin chính thức. Khi đăng ký thật, nên đối chiếu lại website trường và hệ thống của Bộ.</p>
+          <div class="source-content">
+            Điểm trong web là điểm chuẩn phương thức điểm thi THPT năm 2025, dùng để tham khảo khi xếp thử. Khi có điểm chuẩn hoặc đề án 2026, bạn có thể tự thêm ngành hoặc chỉnh dữ liệu trong code.
+            <div id="hiddenBox"></div>
+          </div>
         </details>
-      </div>
-    </section>
+      </section>
 
-    <section class="panel planner" id="plannerPanel">
-      <div class="panel-head">
-        <div>
-          <h2 class="panel-title">Nguyện vọng của bạn</h2>
-          <p class="panel-sub">NV1 là ngành thích nhất. Kéo thả hoặc bấm ↑ ↓.</p>
+      <aside class="card choice-card" id="choiceCard">
+        <div class="section-head">
+          <div>
+            <h2 class="section-title">Nguyện vọng của bạn</h2>
+            <p class="section-sub">NV1 là ngành thích nhất. Kéo thả hoặc bấm ↑ ↓.</p>
+          </div>
+          <div style="display:flex;gap:10px;align-items:center">
+            <span class="count" id="choiceCount">0/15</span>
+            <button class="btn primary" id="jumpBtn" title="Chọn ngành">+</button>
+          </div>
         </div>
-        <div class="planner-head-actions">
-          <span class="count-pill" id="countPill">0/15</span>
-          <button class="btn icon" id="quickAddBtn" title="Chọn ngành">+</button>
-        </div>
-      </div>
-      <div class="panel-body">
-        <div id="wishlist" class="wishlist"></div>
-        <div class="footer-actions">
-          <button class="btn ghost" id="copyBtn">Copy</button>
-          <button class="btn ghost" id="printBtn">Lưu PDF</button>
+        <div class="chosen" id="choiceList"></div>
+        <div class="actions">
+          <button class="btn" id="copyBtn">Copy</button>
+          <button class="btn" id="printBtn">Lưu PDF</button>
           <button class="btn danger" id="clearBtn">Xóa danh sách</button>
         </div>
-      </div>
+      </aside>
     </section>
   </main>
-</div>
-<div id="printArea"></div>
-<div id="toast" class="toast"></div>
-<script>
-const STORAGE_KEY='nv-simulator-v4';
-const YEARS=[2022,2023,2024,2025];
-const basePrograms=[
- {id:'dut-ai',school:'ĐH Bách khoa Đà Nẵng',code:'7480201B',major:'CNTT - Khoa học dữ liệu & Trí tuệ nhân tạo',combos:'A00; A01; X06; X26',hist:{2024:27.11,2025:27.20},note:'Ngành top điểm của DUT, nên xếp nếu thật sự thích.'},
- {id:'dut-cntt',school:'ĐH Bách khoa Đà Nẵng',code:'7480201',major:'Công nghệ thông tin - Đặc thù, hợp tác doanh nghiệp',combos:'A00; A01; X06; X26',hist:{2024:26.10,2025:25.57},note:'CNTT chính ở DUT, cạnh tranh cao.'},
- {id:'dut-ktmt',school:'ĐH Bách khoa Đà Nẵng',code:'7480106',major:'Kỹ thuật máy tính',combos:'A00; A01; X06; X26',hist:{2024:25.82,2025:25.25},note:'Phần cứng, nhúng, hệ thống máy tính.'},
- {id:'dut-vimic',school:'ĐH Bách khoa Đà Nẵng',code:'7520207A',major:'Điện tử - Viễn thông, Vi điện tử - Thiết kế vi mạch',combos:'A00; A01; X06',hist:{2025:27.00},note:'Vi mạch đang hot; thiếu đủ lịch sử nên nên cộng biên an toàn.'},
- {id:'dut-auto',school:'ĐH Bách khoa Đà Nẵng',code:'7520216',major:'Kỹ thuật Điều khiển và Tự động hóa',combos:'A00; A01; X06; X26',hist:{2025:26.13},note:'Tự động hóa, robot, hệ thống công nghiệp.'},
- {id:'dut-cdt',school:'ĐH Bách khoa Đà Nẵng',code:'7520114',major:'Kỹ thuật Cơ điện tử',combos:'A00; A01; X06; X26',hist:{2024:25.35,2025:24.93},note:'Cơ khí + điện + điều khiển.'},
- {id:'dut-dtvt',school:'ĐH Bách khoa Đà Nẵng',code:'7520207',major:'Kỹ thuật Điện tử - Viễn thông',combos:'A00; A01; X06; X26',hist:{2025:24.65},note:'Điện tử, viễn thông, embedded.'},
- {id:'dut-iot',school:'ĐH Bách khoa Đà Nẵng',code:'7520215',major:'CT tiên tiến Việt-Mỹ Hệ thống Nhúng & IoT',combos:'A00; A01; D07; X06',hist:{2024:23.80,2025:23.68},note:'Hệ nhúng/IoT, chương trình tiên tiến.'},
- {id:'dut-oto',school:'ĐH Bách khoa Đà Nẵng',code:'7520130',major:'Kỹ thuật ô tô',combos:'A00; A01; X06; X26',hist:{2025:23.56},note:'Ô tô, cơ khí động lực.'},
- {id:'dut-jp',school:'ĐH Bách khoa Đà Nẵng',code:'7480201A',major:'Công nghệ thông tin - ngoại ngữ Nhật',combos:'A00; A01; D28; X06',hist:{2024:25.55,2025:22.50},note:'CNTT định hướng tiếng Nhật; điểm có thể dao động mạnh.'},
- {id:'dut-pfiev',school:'ĐH Bách khoa Đà Nẵng',code:'PFIEV',major:'Kỹ sư chất lượng cao Việt - Pháp PFIEV',combos:'A00; A01; D07; X06',hist:{2023:21.38,2024:22.35,2025:21.38},note:'PFIEV có ngành phần mềm/cơ khí/điện; nên đọc kỹ chương trình.'},
 
- {id:'vku-vimic',school:'ĐH Việt - Hàn VKU',code:'7480108IC',major:'Thiết kế vi mạch bán dẫn - kỹ sư',combos:'A00; A01; C01; D07; X06',hist:{2024:27.00,2025:24.00},note:'Vi mạch VKU từng là nhóm cao điểm, 2025 giảm.'},
- {id:'vku-ai',school:'ĐH Việt - Hàn VKU',code:'7480107',major:'Trí tuệ nhân tạo - kỹ sư',combos:'A00; A01; D01; D07; X06',hist:{2023:25.01,2025:21.00},note:'AI ở VKU; dữ liệu thiếu 2024 nên xem thận trọng.'},
- {id:'vku-data',school:'ĐH Việt - Hàn VKU',code:'7480107DA',major:'Trí tuệ nhân tạo - Phân tích dữ liệu',combos:'A00; A01; D01; D07; X06',hist:{2025:21.00},note:'Data/AI; tự cập nhật thêm 2024 nếu có.'},
- {id:'vku-cntt-ks',school:'ĐH Việt - Hàn VKU',code:'7480201',major:'Công nghệ thông tin - kỹ sư',combos:'A00; A01; D01; D07; X06',hist:{2023:25.01,2025:20.00},note:'CNTT kỹ sư.'},
- {id:'vku-cntt-cn',school:'ĐH Việt - Hàn VKU',code:'7480201B',major:'Công nghệ thông tin - cử nhân',combos:'A00; A01; D01; D07; X06',hist:{2023:23.50,2025:18.50},note:'CNTT cử nhân.'},
- {id:'vku-attt',school:'ĐH Việt - Hàn VKU',code:'7480202',major:'An toàn thông tin - kỹ sư',combos:'A00; A01; D01; D07; X06',hist:{2023:23.00,2025:19.00},note:'Bảo mật, an ninh mạng.'},
- {id:'vku-game',school:'ĐH Việt - Hàn VKU',code:'7480201GT',major:'Công nghệ Game - kỹ sư',combos:'A00; A01; D01; D07; X06',hist:{2025:19.00},note:'Game/software.'},
- {id:'vku-ktmt',school:'ĐH Việt - Hàn VKU',code:'7480108',major:'Công nghệ kỹ thuật máy tính - kỹ sư',combos:'A00; A01; D01; D07; X06',hist:{2023:23.00,2025:20.00},note:'Máy tính, phần cứng/phần mềm.'},
- {id:'vku-auto-sw',school:'ĐH Việt - Hàn VKU',code:'7480108AS',major:'Kỹ thuật phần mềm ô tô - kỹ sư',combos:'A00; A01; D01; D07; X06',hist:{2025:18.00},note:'Software cho ô tô.'},
+  <section id="printArea"></section>
+  <div class="toast" id="toast"></div>
 
- {id:'ute-auto',school:'ĐH Sư phạm Kỹ thuật Đà Nẵng',code:'7510303',major:'Công nghệ kỹ thuật điều khiển và tự động hóa',combos:'A00; A01; C01; X06',hist:{2025:22.58},note:'Tự động hóa ứng dụng.'},
- {id:'ute-otoe',school:'ĐH Sư phạm Kỹ thuật Đà Nẵng',code:'7510205A',major:'Công nghệ kỹ thuật ô tô - Ô tô điện',combos:'A00; A01; C01; X06',hist:{2025:22.35},note:'Ô tô điện.'},
- {id:'ute-oto',school:'ĐH Sư phạm Kỹ thuật Đà Nẵng',code:'7510205',major:'Công nghệ kỹ thuật ô tô',combos:'A00; A01; C01; X06',hist:{2025:22.01},note:'Ô tô.'},
- {id:'ute-vimic',school:'ĐH Sư phạm Kỹ thuật Đà Nẵng',code:'7510302A',major:'Điện tử - viễn thông, Thiết kế vi mạch bán dẫn',combos:'A00; A01; C01; X06',hist:{2024:23.55,2025:21.85},note:'Vi mạch mức điểm dễ chịu hơn DUT/VKU.'},
- {id:'ute-spkt-cntt',school:'ĐH Sư phạm Kỹ thuật Đà Nẵng',code:'7140214',major:'Sư phạm Kỹ thuật công nghiệp - Công nghệ thông tin',combos:'A00; A01; C01; X06',hist:{2025:21.44},note:'Có yếu tố sư phạm kỹ thuật.'},
- {id:'ute-cdt',school:'ĐH Sư phạm Kỹ thuật Đà Nẵng',code:'7510203',major:'Công nghệ kỹ thuật cơ điện tử',combos:'A00; A01; C01; X06',hist:{2025:21.31},note:'Cơ điện tử ứng dụng.'},
- {id:'ute-dt',school:'ĐH Sư phạm Kỹ thuật Đà Nẵng',code:'7510301A',major:'Công nghệ kỹ thuật điện, điện tử',combos:'A00; A01; C01; X06',hist:{2025:21.27},note:'Điện tử.'},
- {id:'ute-cntt',school:'ĐH Sư phạm Kỹ thuật Đà Nẵng',code:'7480201',major:'Công nghệ thông tin',combos:'A00; A01; C01; X06',hist:{2025:20.75},note:'CNTT tại SPKT.'},
+  <script>
+    const PROGRAMS = [{"id":"DUT-7420201-1","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7420201","major":"Công nghệ sinh học","score":21.5,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7420201A-2","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7420201A","major":"Công nghệ sinh học, chuyên ngành Công nghệ sinh học Y Dược","score":23.48,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7480106-3","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7480106","major":"Kỹ thuật máy tính","score":25.25,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7480201-4","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7480201","major":"Công nghệ thông tin (Đặc thù - Hợp tác doanh nghiệp)","score":25.57,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7480201B-5","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7480201B","major":"Công nghệ thông tin (Đặc thù - Hợp tác doanh nghiệp), chuyên ngành Khoa học dữ liệu và Trí tuệ nhân tạo","score":27.2,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7480201A-6","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7480201A","major":"Công nghệ thông tin (ngoại ngữ Nhật)","score":22.5,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7510105-7","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7510105","major":"Công nghệ kỹ thuật vật liệu xây dựng","score":18.85,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7510202-8","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7510202","major":"Công nghệ chế tạo máy","score":22.5,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-PFIEV-9","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"PFIEV","major":"Chương trình đào tạo kỹ sư chất lượng cao Việt - Pháp (PFIEV)","score":21.38,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7510601-10","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7510601","major":"Quản lý công nghiệp","score":22.93,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7510701-11","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7510701","major":"Công nghệ dầu khí và khai thác dầu","score":21.35,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520103A-12","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520103A","major":"Kỹ thuật Cơ khí, chuyên ngành Cơ khí động lực","score":23.65,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520103B-13","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520103B","major":"Kỹ thuật Cơ khí, chuyên ngành Cơ khí hàng không","score":23.33,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520114-14","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520114","major":"Kỹ thuật Cơ điện tử","score":24.93,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520115-15","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520115","major":"Kỹ thuật nhiệt","score":22.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520115A-16","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520115A","major":"Kỹ thuật nhiệt, chuyên ngành Quản lý Năng lượng","score":21.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520118-17","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520118","major":"Kỹ thuật hệ thống công nghiệp","score":21.27,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520122-18","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520122","major":"Kỹ thuật Tàu thủy","score":19.3,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520130-19","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520130","major":"Kỹ thuật ô tô","score":23.56,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520201-20","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520201","major":"Kỹ thuật Điện","score":23.55,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520207-21","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520207","major":"Kỹ thuật điện tử - viễn thông","score":24.65,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520207A-22","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520207A","major":"Kỹ thuật Điện tử - Viễn thông, chuyên ngành Vi điện tử - Thiết kế vi mạch","score":27.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520207VM-23","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520207VM","major":"Chương trình tiên tiến Việt - Mỹ ngành Điện tử viễn thông","score":23.09,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7480118VM-24","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7480118VM","major":"Chương trình tiên tiến Việt - Mỹ ngành Hệ thống Nhúng và IoT","score":23.68,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520216-25","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520216","major":"Kỹ thuật Điều khiển và Tự động hóa","score":26.13,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520301-26","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520301","major":"Kỹ thuật hóa học","score":24.17,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7520320-27","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7520320","major":"Kỹ thuật môi trường","score":18.1,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7540101-28","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7540101","major":"Công nghệ thực phẩm","score":21.1,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7580101-29","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7580101","major":"Kiến trúc","score":18.5,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7580201-30","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7580201","major":"Kỹ thuật xây dựng, chuyên ngành Xây dựng dân dụng và công nghiệp","score":19.5,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7580201A-31","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7580201A","major":"Kỹ thuật xây dựng, chuyên ngành Tin học xây dựng","score":19.1,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7580201B-32","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7580201B","major":"Kỹ thuật xây dựng, chuyên ngành Kỹ thuật và quản lý xây dựng đô thị thông minh","score":19.6,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7580201C-33","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7580201C","major":"Kỹ thuật xây dựng, chuyên ngành Mô hình thông tin và trí tuệ nhân tạo trong xây dựng","score":20.25,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7580202-34","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7580202","major":"Kỹ thuật xây dựng công trình thủy","score":16.5,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7580205-35","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7580205","major":"Kỹ thuật xây dựng công trình giao thông","score":18.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7580205A-36","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7580205A","major":"Kỹ thuật xây dựng công trình giao thông, chuyên ngành Xây dựng đường sắt tốc độ cao và đường sắt đô thị","score":17.25,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7580210-37","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7580210","major":"Kỹ thuật cơ sở hạ tầng","score":18.2,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7580301-38","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7580301","major":"Kinh tế xây dựng","score":20.39,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DUT-7850101-39","school":"ĐH Bách khoa Đà Nẵng","short":"DUT","code":"7850101","major":"Quản lý tài nguyên và môi trường","score":19.35,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7140214-40","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7140214","major":"Sư phạm Kỹ thuật công nghiệp (chuyên ngành Công nghệ thông tin)","score":21.44,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7480201-41","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7480201","major":"Công nghệ thông tin","score":20.75,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510101-42","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510101","major":"Công nghệ kỹ thuật kiến trúc","score":17.05,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510103-43","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510103","major":"Công nghệ kỹ thuật xây dựng (chuyên ngành Xây dựng dân dụng và Công nghiệp)","score":17.91,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510104-44","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510104","major":"Công nghệ kỹ thuật giao thông (chuyên ngành Xây dựng cầu đường)","score":17.89,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510201-45","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510201","major":"Công nghệ kỹ thuật cơ khí (chuyên ngành Cơ khí chế tạo)","score":21.1,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510201A-46","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510201A","major":"Công nghệ kỹ thuật cơ khí (chuyên ngành Thiết kế và mô phỏng số trong cơ khí)","score":19.1,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510203-47","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510203","major":"Công nghệ kỹ thuật cơ điện tử","score":21.31,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510205-48","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510205","major":"Công nghệ kỹ thuật ô tô","score":22.01,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510205A-49","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510205A","major":"Công nghệ kỹ thuật ô tô (chuyên ngành Ô tô điện)","score":22.35,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510205KT-50","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510205KT","major":"Công nghệ kỹ thuật ô tô (đào tạo 2 năm đầu tại Kon Tum)","score":18.75,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510206-51","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510206","major":"Công nghệ kỹ thuật nhiệt (chuyên ngành Nhiệt - Điện lạnh)","score":20.2,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510301A-52","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510301A","major":"Công nghệ kỹ thuật điện, điện tử (chuyên ngành Công nghệ kỹ thuật điện tử)","score":21.27,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510301B-53","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510301B","major":"Công nghệ kỹ thuật điện, điện tử (chuyên ngành Công nghệ kỹ thuật điện)","score":21.07,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510302-54","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510302","major":"Công nghệ kỹ thuật điện tử - viễn thông","score":21.09,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510302A-55","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510302A","major":"Công nghệ kỹ thuật điện tử - viễn thông (chuyên ngành Thiết kế vi mạch bán dẫn)","score":21.85,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510303-56","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510303","major":"Công nghệ kỹ thuật điều khiển và tự động hóa","score":22.58,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510303KT-57","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510303KT","major":"Công nghệ kỹ thuật điều khiển và tự động hóa (đào tạo 2 năm đầu tại Kon Tum)","score":18.25,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510401-58","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510401","major":"Công nghệ kỹ thuật hoá học","score":20.69,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510402-59","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510402","major":"Công nghệ vật liệu (chuyên ngành Hóa học Vật liệu mới)","score":17.95,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7510406-60","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7510406","major":"Công nghệ kỹ thuật môi trường","score":17.07,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7540102-61","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7540102","major":"Kỹ thuật thực phẩm","score":18.53,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7540102A-62","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7540102A","major":"Kỹ thuật thực phẩm (chuyên ngành Kỹ thuật sinh học thực phẩm)","score":17.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DSK-7580210-63","school":"ĐH Sư phạm Kỹ thuật Đà Nẵng","short":"DSK","code":"7580210","major":"Kỹ thuật cơ sở hạ tầng (chuyên ngành Xây dựng hạ tầng đô thị)","score":18.6,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7480108IC-64","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7480108IC","major":"Công nghệ kỹ thuật máy tính - Chuyên ngành Thiết kế vi mạch bán dẫn (kỹ sư)","score":24.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7340101EL-65","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7340101EL","major":"Quản trị kinh doanh - Chuyên ngành Quản trị Logistics và chuỗi cung ứng số","score":23.5,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7340115-66","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7340115","major":"Marketing","score":23.25,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7340101ET-67","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7340101ET","major":"Quản trị kinh doanh - Chuyên ngành Quản trị dịch vụ du lịch và lữ hành số","score":23.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7340101-68","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7340101","major":"Quản trị kinh doanh","score":22.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7340205-69","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7340205","major":"Công nghệ tài chính","score":22.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7480107-70","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7480107","major":"Trí tuệ nhân tạo (kỹ sư)","score":21.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7480107DA-71","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7480107DA","major":"Trí tuệ nhân tạo - Chuyên ngành Phân tích dữ liệu (kỹ sư)","score":21.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7320106-72","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7320106","major":"Công nghệ truyền thông (cử nhân)","score":21.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7320106DA-73","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7320106DA","major":"Công nghệ truyền thông - Chuyên ngành Thiết kế Mỹ thuật số (cử nhân)","score":21.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7340101IM-74","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7340101IM","major":"Quản trị kinh doanh - Chuyên ngành Quản trị dự án Công nghệ thông tin","score":20.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7480108-75","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7480108","major":"Công nghệ kỹ thuật máy tính (kỹ sư)","score":20.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7480201-76","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7480201","major":"Công nghệ thông tin (kỹ sư)","score":20.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7480202-77","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7480202","major":"An toàn thông tin (kỹ sư)","score":19.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7480201GT-78","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7480201GT","major":"Công nghệ thông tin - Chuyên ngành Công nghệ Game (kỹ sư)","score":19.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7480201B-79","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7480201B","major":"Công nghệ thông tin (cử nhân)","score":18.5,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7480201DT-80","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7480201DT","major":"Công nghệ thông tin (cử nhân - Hợp tác doanh nghiệp)","score":18.5,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7480108B-81","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7480108B","major":"Công nghệ kỹ thuật máy tính (cử nhân)","score":18.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"VKU-7480108AS-82","school":"ĐH Việt - Hàn VKU","short":"VKU","code":"7480108AS","major":"Công nghệ kỹ thuật máy tính - Chuyên ngành Kỹ thuật phần mềm ô tô (kỹ sư)","score":18.0,"combo":"","source":"Điểm thi THPT 2025"},{"id":"DDS-7140209-83","school":"ĐH Sư phạm Đà Nẵng","short":"DDS","code":"7140209","major":"Sư phạm Toán học","score":28.07,"combo":"A00; A01; X06","source":"Điểm thi THPT 2025"},{"id":"DDS-7140210-84","school":"ĐH Sư phạm Đà Nẵng","short":"DDS","code":"7140210","major":"Sư phạm Tin học","score":25.99,"combo":"A00; X06; A01","source":"Điểm thi THPT 2025"},{"id":"DDS-7140211-85","school":"ĐH Sư phạm Đà Nẵng","short":"DDS","code":"7140211","major":"Sư phạm Vật lý","score":28.06,"combo":"A01; A00; X06; C01","source":"Điểm thi THPT 2025"},{"id":"DHS-7140209-86","school":"ĐH Sư phạm Huế","short":"DHS","code":"7140209","major":"Sư phạm Toán học","score":26.1,"combo":"A00; A01","source":"Điểm thi THPT 2025"},{"id":"DHS-7140210-87","school":"ĐH Sư phạm Huế","short":"DHS","code":"7140210","major":"Sư phạm Tin học","score":22.3,"combo":"A00; C01; D01; X02; X26","source":"Điểm thi THPT 2025"},{"id":"DHS-7140211-88","school":"ĐH Sư phạm Huế","short":"DHS","code":"7140211","major":"Sư phạm Vật lý","score":26.08,"combo":"A00; A01; A02; X07","source":"Điểm thi THPT 2025"}];
+    const MAX_CHOICES = 15;
+    const LS = {
+      choices: 'nv_v5_choices',
+      hidden: 'nv_v5_hidden',
+      score: 'nv_v5_score',
+      custom: 'nv_v5_custom',
+      safety: 'nv_v5_safety',
+      taste: 'nv_v5_taste'
+    };
+    const $ = (id) => document.getElementById(id);
+    const state = {
+      choices: loadJson(LS.choices, []),
+      hidden: new Set(loadJson(LS.hidden, [])),
+      custom: loadJson(LS.custom, []),
+      score: localStorage.getItem(LS.score) || '',
+      safety: localStorage.getItem(LS.safety) || 'conservative',
+      taste: localStorage.getItem(LS.taste) || 'balanced'
+    };
 
- {id:'ued-sp-tin',school:'ĐH Sư phạm Đà Nẵng',code:'7140210',major:'Sư phạm Tin học',combos:'A00; A01; X06',hist:{2022:19.40,2023:21.40,2025:25.99},note:'2025 tăng mạnh; cần kiểm tra điều kiện sư phạm và học lực.'},
- {id:'ued-sp-tin-th',school:'ĐH Sư phạm Đà Nẵng',code:'7140250',major:'Sư phạm Tin học và Công nghệ Tiểu học',combos:'D01; C01; C02; X02; X03',hist:{2022:22.75,2023:22.30,2025:22.25},note:'Gần Sư phạm Tin/Công nghệ tiểu học.'},
- {id:'ued-cntt',school:'ĐH Sư phạm Đà Nẵng',code:'7480201',major:'Công nghệ thông tin',combos:'A00; A01; X06',hist:{2022:22.30,2023:21.15,2024:23.00,2025:17.50},note:'Không phải ngành sư phạm; điểm có dao động.'},
+    function loadJson(key, fallback){
+      try{ const raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; }
+      catch(e){ return fallback; }
+    }
+    function save(){
+      localStorage.setItem(LS.choices, JSON.stringify(state.choices));
+      localStorage.setItem(LS.hidden, JSON.stringify([...state.hidden]));
+      localStorage.setItem(LS.custom, JSON.stringify(state.custom));
+      localStorage.setItem(LS.score, state.score);
+      localStorage.setItem(LS.safety, state.safety);
+      localStorage.setItem(LS.taste, state.taste);
+    }
+    function allPrograms(){ return PROGRAMS.concat(state.custom); }
+    function fmtScore(v){ return (Math.round(Number(v)*100)/100).toFixed(2).replace('.', ','); }
+    function normalize(s){ return String(s||'').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g,''); }
+    function userScore(){
+      const n = Number(String(state.score).replace(',', '.'));
+      return Number.isFinite(n) ? n : null;
+    }
+    function target(p){
+      const base = Number(p.score);
+      if(!Number.isFinite(base)) return null;
+      return state.safety === 'conservative' ? base + 0.5 : base;
+    }
+    function risk(p){
+      const s = userScore();
+      const t = target(p);
+      if(s === null || t === null) return {label:'Mốc 2025', cls:'', diff:null};
+      const d = s - t;
+      if(d >= 1) return {label:'An toàn', cls:'ok', diff:d};
+      if(d >= 0) return {label:'Ổn', cls:'ok', diff:d};
+      if(d >= -1) return {label:'Cân nhắc', cls:'warn', diff:d};
+      return {label:'Khó', cls:'hard', diff:d};
+    }
+    function findProgram(id){ return allPrograms().find(p => p.id === id); }
+    function toast(msg){
+      const el = $('toast'); el.textContent = msg; el.classList.add('show');
+      clearTimeout(toast._t); toast._t = setTimeout(()=>el.classList.remove('show'), 1500);
+    }
 
- {id:'dhs-sp-tin',school:'ĐH Sư phạm Huế',code:'7140210',major:'Sư phạm Tin học',combos:'A00; C01; D01; X02; X26',hist:{2023:19.75,2024:23.30,2025:22.30},note:'Sư phạm Tin Huế; 2024 cao hơn 2025.'},
- {id:'dhs-httt',school:'ĐH Sư phạm Huế',code:'7480104',major:'Hệ thống thông tin',combos:'A00; C01; D01; X02; X26',hist:{2023:15.00,2024:15.00,2025:17.50},note:'Không phải sư phạm; làm ngành an toàn kỹ thuật.'}
-];
-let programs=[...basePrograms];
-let selected=[];
-let hiddenIds=[];
-let userScore='';
-const $=id=>document.getElementById(id);
-const fmt=n=>n==null||Number.isNaN(Number(n))?'—':Number(n).toLocaleString('vi-VN',{minimumFractionDigits:Number.isInteger(Number(n))?0:2,maximumFractionDigits:2});
-const norm=s=>String(s||'').toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g,'');
-const escapeHtml=s=>String(s??'').replace(/[&<>"]/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[m]));
-function toast(msg='Đã lưu'){const t=$('toast');t.textContent=msg;t.classList.add('show');setTimeout(()=>t.classList.remove('show'),1300)}
-function clone(x){return JSON.parse(JSON.stringify(x))}
-function values(p){return Object.values(p.hist||{}).filter(v=>typeof v==='number'&&!Number.isNaN(v))}
-function latest(p){const y=Object.keys(p.hist||{}).map(Number).sort((a,b)=>b-a).find(y=>p.hist[y]!=null);return y?Number(p.hist[y]):null}
-function maxv(p){const v=values(p);return v.length?Math.max(...v):null}
-function avg(p){const v=values(p);return v.length?v.reduce((a,b)=>a+b,0)/v.length:null}
-function range(p){const v=values(p);return v.length>1?Math.max(...v)-Math.min(...v):0}
-function trend(p){const ys=Object.keys(p.hist||{}).map(Number).sort((a,b)=>a-b).filter(y=>p.hist[y]!=null);if(ys.length<2)return {txt:'chưa đủ dữ liệu',delta:0};const d=p.hist[ys.at(-1)]-p.hist[ys.at(-2)];return {txt:d>.15?'đang tăng':d<-.15?'đang giảm':'gần như ngang',delta:d}}
-function benchmark(p){
-  if(p.predict!=null&&p.predict!=='') return Number(p.predict);
-  const mode=$('riskMode')?.value||'conservative';
-  const l=latest(p), m=maxv(p), a=avg(p);
-  if(mode==='latest') return l??m??a??0;
-  if(mode==='max') return m??l??a??0;
-  if(mode==='avg') return a??l??m??0;
-  let base=m??l??a??0, extra=0, t=trend(p), r=range(p);
-  if(values(p).length<3) extra+=.3;
-  if(t.delta>.5) extra+=.4;
-  if(r>2) extra+=.35;
-  if(r>4) extra+=.35;
-  return Math.min(30,base+extra);
-}
-function riskOf(p){
-  const s=parseFloat(userScore), b=benchmark(p);
-  if(Number.isNaN(s)) return {label:'nhập điểm',cls:'ok',diff:null};
-  let d=s-b;
-  const a=$('ambition')?.value||'normal';
-  if(a==='bold') d+=.35; if(a==='safe') d-=.35;
-  if(d>=2) return {label:'an toàn',cls:'safe',diff:s-b};
-  if(d>=.4) return {label:'vừa sức',cls:'ok',diff:s-b};
-  if(d>=-1.2) return {label:'mạo hiểm',cls:'reach',diff:s-b};
-  if(d>=-2.5) return {label:'mơ ước',cls:'dream',diff:s-b};
-  return {label:'khó',cls:'hard',diff:s-b};
-}
-function save(){
-  localStorage.setItem(STORAGE_KEY,JSON.stringify({userScore,selected,hiddenIds,customPrograms:programs.filter(p=>p.custom),riskMode:$('riskMode')?.value,ambition:$('ambition')?.value}));
-}
-function load(){
-  try{
-    const d=JSON.parse(localStorage.getItem(STORAGE_KEY)||'{}');
-    userScore=d.userScore||''; selected=(d.selected||[]).slice(0,15); hiddenIds=d.hiddenIds||[];
-    programs=[...basePrograms,...(d.customPrograms||[])];
-    $('scoreInput').value=userScore;
-    if(d.riskMode) $('riskMode').value=d.riskMode;
-    if(d.ambition) $('ambition').value=d.ambition;
-  }catch(e){}
-}
-function populateSchool(){
-  const schools=[...new Set(programs.map(p=>p.school))].sort((a,b)=>a.localeCompare(b,'vi'));
-  $('schoolFilter').innerHTML='<option value="all">Tất cả trường</option>'+schools.map(s=>`<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
-}
-function filteredPrograms(){
-  const selectedIds=new Set(selected.map(p=>p.id));
-  const hidden=new Set(hiddenIds);
-  const q=norm($('searchInput').value);
-  const school=$('schoolFilter').value;
-  let list=programs.filter(p=>!selectedIds.has(p.id)&&!hidden.has(p.id));
-  if(school!=='all') list=list.filter(p=>p.school===school);
-  if(q) list=list.filter(p=>norm(`${p.school} ${p.major} ${p.code} ${p.combos} ${p.note}`).includes(q));
-  const sort=$('sortSelect').value;
-  const s=parseFloat(userScore);
-  if(sort==='scoreDesc') list.sort((a,b)=>benchmark(b)-benchmark(a));
-  else if(sort==='scoreAsc') list.sort((a,b)=>benchmark(a)-benchmark(b));
-  else if(sort==='school') list.sort((a,b)=>a.school.localeCompare(b.school,'vi')||benchmark(b)-benchmark(a));
-  else list.sort((a,b)=>Number.isNaN(s)?benchmark(b)-benchmark(a):Math.abs(s-benchmark(a))-Math.abs(s-benchmark(b)));
-  return list;
-}
-function detailsHtml(p){
-  const t=trend(p);
-  return `<div class="detail-box">
-    <div class="year-grid">
-      ${YEARS.map(y=>`<div class="year-cell"><small>${y}</small><b>${fmt(p.hist?.[y])}</b></div>`).join('')}
-      <div class="year-cell"><small>Mốc tính</small><b>${fmt(benchmark(p))}</b></div>
-    </div>
-    <p class="note">${escapeHtml(p.note||'')} Tình trạng: ${t.txt}. Tổ hợp: ${escapeHtml(p.combos||'')}.</p>
-    <div class="more-actions">
-      <button class="btn small ghost" onclick="editProgram('${p.id}')">Sửa mốc</button>
-      <button class="btn small ghost" onclick="hideProgram('${p.id}')">Ẩn khỏi máy này</button>
-      ${p.custom?`<button class="btn small danger" onclick="deleteCustom('${p.id}')">Xóa ngành tự thêm</button>`:''}
-    </div>
-  </div>`;
-}
-function renderCards(){
-  const list=filteredPrograms();
-  $('cards').innerHTML=list.map(p=>{
-    const r=riskOf(p);
-    const hasScore=!Number.isNaN(parseFloat(String(userScore).replace(',','.')));
-    const diff=r.diff==null?'':` · ${fmt(r.diff)}`;
-    const riskTag=hasScore?`<span class="tag risk ${r.cls}">${r.label}${diff}</span>`:'';
-    return `<article class="program-card">
-      <div>
-        <div class="school">${escapeHtml(p.school)}</div>
-        <div class="major">${escapeHtml(p.major)}</div>
-        <div class="tags">
-          <span class="tag score-tag">Mốc ${fmt(benchmark(p))}</span>
-          ${riskTag}
-          <span class="tag">${escapeHtml(p.code)}</span>
+    function init(){
+      $('scoreInput').value = state.score;
+      $('safetyMode').value = state.safety;
+      $('riskTaste').value = state.taste;
+      renderSchoolFilter();
+      bind();
+      cleanChoices();
+      render();
+    }
+    function renderSchoolFilter(){
+      const select = $('schoolFilter');
+      const schools = [...new Set(allPrograms().map(p=>p.school))].sort((a,b)=>a.localeCompare(b,'vi'));
+      select.innerHTML = '<option value="">Tất cả trường</option>' + schools.map(s=>`<option value="${escapeHtml(s)}">${escapeHtml(s)}</option>`).join('');
+    }
+    function bind(){
+      $('scoreInput').addEventListener('input', e => { state.score = e.target.value; save(); render(); });
+      $('safetyMode').addEventListener('change', e => { state.safety = e.target.value; save(); render(); });
+      $('riskTaste').addEventListener('change', e => { state.taste = e.target.value; save(); render(); });
+      $('searchInput').addEventListener('input', renderPrograms);
+      $('schoolFilter').addEventListener('change', renderPrograms);
+      $('sortMode').addEventListener('change', renderPrograms);
+      $('jumpBtn').addEventListener('click', jumpBank);
+      $('quickAddBtn').addEventListener('click', jumpBank);
+      $('copyBtn').addEventListener('click', copyChoices);
+      $('printBtn').addEventListener('click', printChoices);
+      $('clearBtn').addEventListener('click', clearChoices);
+      $('customBtn').addEventListener('click', addCustom);
+    }
+    function render(){ renderPrograms(); renderChoices(); renderHidden(); updatePrintArea(); }
+
+    function renderPrograms(){
+      const q = normalize($('searchInput').value);
+      const school = $('schoolFilter').value;
+      const sort = $('sortMode').value;
+      let list = allPrograms().filter(p => !state.hidden.has(p.id));
+      if(school) list = list.filter(p => p.school === school);
+      if(q){
+        list = list.filter(p => normalize(`${p.school} ${p.short} ${p.code} ${p.major}`).includes(q));
+      }
+      const s = userScore();
+      list.sort((a,b)=>{
+        if(sort === 'high') return Number(b.score||0) - Number(a.score||0);
+        if(sort === 'low') return Number(a.score||0) - Number(b.score||0);
+        if(sort === 'school') return (a.school+a.major).localeCompare(b.school+b.major,'vi');
+        if(s !== null) return Math.abs(Number(a.score||0)-s) - Math.abs(Number(b.score||0)-s);
+        return Number(b.score||0) - Number(a.score||0);
+      });
+      const el = $('programList');
+      if(!list.length){
+        el.innerHTML = `<div class="empty" style="grid-column:1/-1"><span class="plus-mini">!</span><div><b>Không thấy ngành phù hợp</b><br><span style="color:var(--muted)">Thử đổi bộ lọc hoặc khôi phục ngành đã ẩn.</span></div></div>`;
+        return;
+      }
+      el.innerHTML = list.map(programCard).join('');
+      el.querySelectorAll('[data-add]').forEach(btn => btn.addEventListener('click', ()=>addChoice(btn.dataset.add)));
+      el.querySelectorAll('[data-hide]').forEach(btn => btn.addEventListener('click', ()=>hideProgram(btn.dataset.hide)));
+    }
+    function programCard(p){
+      const r = risk(p);
+      const disabled = state.choices.includes(p.id) ? 'disabled' : '';
+      return `<article class="program">
+        <div>
+          <div class="school">${escapeHtml(p.school)}</div>
+          <h3 class="major">${escapeHtml(p.major)}</h3>
+          <div class="badges">
+            <span class="badge score-badge">Mốc ${fmtScore(p.score)}</span>
+            <span class="badge">${escapeHtml(p.code)}</span>
+            <span class="badge ${r.cls}">${escapeHtml(r.label)}</span>
+          </div>
         </div>
-      </div>
-      <div class="add-col">
-        <button class="btn icon" onclick="addProgram('${p.id}')" title="Thêm ngành">+</button>
-      </div>
-      <details class="more"><summary>Chi tiết</summary>${detailsHtml(p)}</details>
-    </article>`;
-  }).join('') || `<div class="source-box">Không còn ngành phù hợp. Thử đổi bộ lọc hoặc khôi phục ngành đã ẩn.</div>`;
-  renderHiddenTools();
-}
-function renderWishlist(){
-  const rows=selected.map((p,i)=>{
-    const r=riskOf(p);
-    const hasScore=!Number.isNaN(parseFloat(String(userScore).replace(',','.')));
-    const riskText=hasScore?` · ${r.label}`:'';
-    return `<div class="slot" draggable="true" data-index="${i}">
-      <div class="rank">${i+1}</div>
-      <div class="slot-main">
-        <strong>${escapeHtml(p.major)}</strong>
-        <span>${escapeHtml(p.school)} · ${escapeHtml(p.code)} · mốc ${fmt(benchmark(p))}${riskText}</span>
-      </div>
-      <div class="slot-actions">
-        <button class="btn small ghost" onclick="moveItem(${i},-1)">↑</button>
-        <button class="btn small ghost" onclick="moveItem(${i},1)">↓</button>
-        <button class="btn small ghost" onclick="editSelected(${i})">Sửa</button>
-        <button class="btn small danger" onclick="removeItem(${i})">Xóa</button>
-      </div>
-    </div>`;
-  }).join('');
-  const empty=`<div class="slot empty-slot">
-    <div class="rank">+</div>
-    <div class="slot-main"><strong>${selected.length?`Còn ${15-selected.length} vị trí`:'Chưa chọn ngành nào'}</strong><span>Bấm + để lướt xuống kho ngành.</span></div>
-    <div class="slot-actions"><button class="btn small" onclick="scrollToCatalog()">+ Chọn ngành</button></div>
-  </div>`;
-  $('wishlist').innerHTML=rows+empty;
-  $('countPill').textContent=`${selected.length}/15`;
-  bindDrag();
-  save();
-}
-function renderHiddenTools(){
-  const box=$('hiddenTools');
-  if(!hiddenIds.length){box.innerHTML='';return;}
-  const hidden=hiddenIds.map(id=>programs.find(p=>p.id===id)).filter(Boolean);
-  box.innerHTML=`<details><summary>Đã ẩn ${hidden.length} ngành trên trình duyệt này</summary>
-    <div class="hidden-list">
-      ${hidden.map(p=>`<div class="hidden-item"><span>${escapeHtml(p.major)}<br><small>${escapeHtml(p.school)}</small></span><button class="btn small ghost" onclick="unhideProgram('${p.id}')">Khôi phục</button></div>`).join('')}
-      <button class="btn ghost" onclick="restoreAllHidden()">Khôi phục tất cả</button>
-    </div>
-  </details>`;
-}
-function renderAll(){renderCards();renderWishlist();}
-function scrollToCatalog(){
-  $('catalogPanel').scrollIntoView({behavior:'smooth',block:'start'});
-  setTimeout(()=>$('searchInput').focus({preventScroll:true}),420);
-}
-window.scrollToCatalog=scrollToCatalog;
-window.addProgram=id=>{
-  if(selected.length>=15) return toast('Đã đủ 15 nguyện vọng');
-  const p=programs.find(x=>x.id===id); if(!p) return;
-  selected.push(clone(p));
-  renderAll();
-  toast('Đã thêm');
-  if(matchMedia('(max-width: 940px)').matches) $('plannerPanel').scrollIntoView({behavior:'smooth',block:'start'});
-}
-window.removeItem=i=>{selected.splice(i,1);renderAll();toast('Đã xóa')};
-window.moveItem=(i,d)=>{const j=i+d;if(j<0||j>=selected.length)return;[selected[i],selected[j]]=[selected[j],selected[i]];renderWishlist();toast('Đã đổi thứ tự')};
-window.editProgram=id=>{
-  const p=programs.find(x=>x.id===id); if(!p) return;
-  const val=prompt('Nhập mốc/dự đoán 2026 cho ngành này. Bỏ trống để dùng công thức:',p.predict??'');
-  if(val===null) return;
-  if(String(val).trim()==='') delete p.predict;
-  else {const n=parseFloat(String(val).replace(',','.')); if(Number.isNaN(n)) return toast('Điểm không hợp lệ'); p.predict=n;}
-  renderAll(); toast('Đã sửa mốc');
-}
-window.editSelected=i=>{
-  const p=selected[i]; if(!p) return;
-  const val=prompt('Sửa mốc/dự đoán 2026 cho nguyện vọng này:',p.predict??benchmark(p));
-  if(val===null) return;
-  const n=parseFloat(String(val).replace(',','.')); if(Number.isNaN(n)) return toast('Điểm không hợp lệ');
-  p.predict=n; renderAll(); toast('Đã sửa');
-}
-window.hideProgram=id=>{
-  if(!hiddenIds.includes(id)) hiddenIds.push(id);
-  renderCards(); save(); toast('Đã ẩn trên máy này');
-}
-window.unhideProgram=id=>{hiddenIds=hiddenIds.filter(x=>x!==id);renderCards();save();toast('Đã khôi phục')};
-window.restoreAllHidden=()=>{hiddenIds=[];renderCards();save();toast('Đã khôi phục')};
-window.deleteCustom=id=>{
-  programs=programs.filter(p=>p.id!==id); selected=selected.filter(p=>p.id!==id); hiddenIds=hiddenIds.filter(x=>x!==id);
-  populateSchool(); renderAll(); toast('Đã xóa ngành tự thêm');
-}
-function bindDrag(){
-  let from=null;
-  document.querySelectorAll('.slot[draggable="true"]').forEach(el=>{
-    el.addEventListener('dragstart',e=>{from=+el.dataset.index;e.dataTransfer.effectAllowed='move';});
-    el.addEventListener('dragover',e=>{e.preventDefault();el.classList.add('drag-over');});
-    el.addEventListener('dragleave',()=>el.classList.remove('drag-over'));
-    el.addEventListener('drop',e=>{
-      e.preventDefault();el.classList.remove('drag-over');
-      const to=+el.dataset.index; if(from===null||to===from)return;
-      const [item]=selected.splice(from,1); selected.splice(to,0,item); renderWishlist();
-    });
-  });
-}
-function preparePrint(){
-  const rows=[];
-  for(let i=0;i<15;i++){
-    const p=selected[i];
-    rows.push(`<tr><td class="print-rank">${i+1}</td><td>${p?escapeHtml(p.school):''}</td><td>${p?escapeHtml(p.major):''}</td><td>${p?escapeHtml(p.code):''}</td><td>${p?fmt(benchmark(p)):''}</td></tr>`);
-  }
-  $('printArea').innerHTML=`<h1 class="print-title">Xếp Nguyện Vọng Thử</h1><p class="print-meta">Điểm xét tuyển: ${escapeHtml(userScore||'chưa nhập')} · Danh sách do người dùng tự chọn</p><table class="print-table"><thead><tr><th>NV</th><th>Trường</th><th>Ngành</th><th>Mã</th><th>Mốc</th></tr></thead><tbody>${rows.join('')}</tbody></table>`;
-}
-$('scoreInput').addEventListener('input',e=>{userScore=e.target.value;renderAll();});
-['riskMode','ambition','searchInput','schoolFilter','sortSelect'].forEach(id=>$(id).addEventListener(id==='searchInput'?'input':'change',renderAll));
-$('quickAddBtn').onclick=scrollToCatalog;
-$('goCatalogBtn').onclick=scrollToCatalog;
-$('addCustomBtn').onclick=()=>$('customBox').classList.toggle('hidden');
-$('cancelCustomBtn').onclick=()=>$('customBox').classList.add('hidden');
-$('saveCustomBtn').onclick=()=>{
-  const school=$('customSchool').value.trim(), major=$('customMajor').value.trim();
-  if(!school||!major) return toast('Nhập trường và ngành');
-  const hist={};
-  YEARS.forEach(y=>{const v=parseFloat($('custom'+y)?.value); if(!Number.isNaN(v)) hist[y]=v;});
-  const p={id:'custom-'+Date.now(),custom:true,school,major,code:$('customCode').value.trim()||'Tự thêm',combos:$('customCombos').value.trim()||'Tự nhập',hist,note:$('customNote').value.trim()||'Ngành tự thêm'};
-  const pr=parseFloat($('customPredict').value); if(!Number.isNaN(pr)) p.predict=pr;
-  programs.push(p);
-  ['customSchool','customMajor','customCode','customCombos','custom2022','custom2023','custom2024','custom2025','customPredict','customNote'].forEach(id=>$(id).value='');
-  $('customBox').classList.add('hidden'); populateSchool(); renderAll(); toast('Đã thêm ngành');
-}
-$('copyBtn').onclick=async()=>{
-  if(!selected.length) return toast('Chưa có nguyện vọng');
-  const text=selected.map((p,i)=>`${i+1}. ${p.school} - ${p.major} (${p.code}) - mốc ${fmt(benchmark(p))} - ${riskOf(p).label}`).join('
-');
-  try{await navigator.clipboard.writeText(text); toast('Đã copy');}catch(e){prompt('Copy danh sách:',text);}
-}
-$('printBtn').onclick=()=>{preparePrint();window.print();};
-$('clearBtn').onclick=()=>{if(confirm('Xóa toàn bộ danh sách nguyện vọng?')){selected=[];renderAll();toast('Đã xóa danh sách');}};
-window.addEventListener('beforeprint',preparePrint);
-load(); populateSchool(); renderAll();
-</script>
+        <button class="addbtn" data-add="${escapeHtml(p.id)}" ${disabled} title="Thêm ngành">+</button>
+        <details>
+          <summary>Chi tiết</summary>
+          <div class="detail-body">
+            <div><b>Trường:</b> ${escapeHtml(p.school)} (${escapeHtml(p.short)})</div>
+            <div><b>Mã ngành:</b> ${escapeHtml(p.code)}</div>
+            ${p.combo ? `<div><b>Tổ hợp:</b> ${escapeHtml(p.combo)}</div>` : ''}
+            <div><b>Nguồn điểm:</b> ${escapeHtml(p.source)}</div>
+            <button class="btn ghost" data-hide="${escapeHtml(p.id)}">Ẩn khỏi máy này</button>
+          </div>
+        </details>
+      </article>`;
+    }
+    function addChoice(id){
+      if(state.choices.includes(id)){ toast('Ngành này đã có trong danh sách'); return; }
+      if(state.choices.length >= MAX_CHOICES){ toast('Đủ 15 nguyện vọng rồi'); return; }
+      state.choices.push(id); save(); render(); toast('Đã thêm vào nguyện vọng');
+      if(window.innerWidth < 900) $('choiceCard').scrollIntoView({behavior:'smooth', block:'start'});
+    }
+    function renderChoices(){
+      const el = $('choiceList');
+      $('choiceCount').textContent = `${state.choices.length}/${MAX_CHOICES}`;
+      if(!state.choices.length){
+        el.innerHTML = `<div class="empty"><span class="plus-mini">+</span><div><b>Chưa chọn ngành nào</b><br><span style="color:var(--muted)">Bấm + để lướt xuống kho ngành.</span></div><button class="btn primary" id="emptyPick">+ Chọn ngành</button></div>`;
+        $('emptyPick').addEventListener('click', jumpBank);
+        return;
+      }
+      el.innerHTML = state.choices.map((id,i)=>choiceCard(id,i)).join('') + (state.choices.length < MAX_CHOICES ? `<div class="empty"><span class="plus-mini">+</span><div><b>Còn ${MAX_CHOICES-state.choices.length} vị trí trống</b><br><span style="color:var(--muted)">Thêm ngành nếu bạn muốn.</span></div><button class="btn" id="morePick">+ Chọn thêm</button></div>` : '');
+      el.querySelectorAll('[data-up]').forEach(btn => btn.addEventListener('click', ()=>moveChoice(Number(btn.dataset.up), -1)));
+      el.querySelectorAll('[data-down]').forEach(btn => btn.addEventListener('click', ()=>moveChoice(Number(btn.dataset.down), 1)));
+      el.querySelectorAll('[data-remove]').forEach(btn => btn.addEventListener('click', ()=>removeChoice(Number(btn.dataset.remove))));
+      const more = $('morePick'); if(more) more.addEventListener('click', jumpBank);
+      enableDrag(el);
+    }
+    function choiceCard(id,i){
+      const p = findProgram(id);
+      if(!p) return '';
+      return `<article class="choice" draggable="true" data-index="${i}">
+        <div class="rank">${i+1}</div>
+        <div><h3>${escapeHtml(p.major)}</h3><p>${escapeHtml(p.school)} · ${escapeHtml(p.code)} · Mốc ${fmtScore(p.score)}</p></div>
+        <div class="choice-actions">
+          <button class="btn ghost" data-up="${i}">↑</button>
+          <button class="btn ghost" data-down="${i}">↓</button>
+          <button class="btn danger" data-remove="${i}">Xóa</button>
+        </div>
+      </article>`;
+    }
+    function moveChoice(i,dir){
+      const j = i + dir;
+      if(j < 0 || j >= state.choices.length) return;
+      [state.choices[i], state.choices[j]] = [state.choices[j], state.choices[i]];
+      save(); render();
+    }
+    function removeChoice(i){ state.choices.splice(i,1); save(); render(); }
+    function clearChoices(){
+      if(!state.choices.length) return;
+      if(confirm('Xóa toàn bộ danh sách nguyện vọng trên trình duyệt này?')){ state.choices=[]; save(); render(); }
+    }
+    function cleanChoices(){ state.choices = state.choices.filter(id => findProgram(id)); save(); }
+    function jumpBank(){ $('bankSection').scrollIntoView({behavior:'smooth', block:'start'}); setTimeout(()=>$('searchInput').focus({preventScroll:true}), 350); }
+    function hideProgram(id){
+      state.hidden.add(id);
+      state.choices = state.choices.filter(x => x !== id);
+      save(); render(); toast('Đã ẩn trên trình duyệt này');
+    }
+    function renderHidden(){
+      const hidden = [...state.hidden].map(id=>allPrograms().find(p=>p.id===id)).filter(Boolean);
+      const box = $('hiddenBox');
+      if(!hidden.length){ box.innerHTML = ''; return; }
+      box.innerHTML = `<div style="margin-top:12px"><b>Đã ẩn ${hidden.length} ngành trên trình duyệt này:</b><div class="hidden-list">${hidden.map(p=>`<span class="hidden-pill">${escapeHtml(p.major)} <button data-restore="${escapeHtml(p.id)}">Khôi phục</button></span>`).join('')}</div><button class="btn ghost" id="restoreAll" style="margin-top:10px">Khôi phục hết</button></div>`;
+      box.querySelectorAll('[data-restore]').forEach(btn => btn.addEventListener('click',()=>{state.hidden.delete(btn.dataset.restore); save(); render();}));
+      $('restoreAll').addEventListener('click',()=>{state.hidden.clear(); save(); render();});
+    }
+    function addCustom(){
+      const major = prompt('Tên ngành muốn thêm:'); if(!major) return;
+      const school = prompt('Tên trường:', 'Tự thêm') || 'Tự thêm';
+      const code = prompt('Mã ngành:', '---') || '---';
+      const raw = prompt('Mốc điểm tham khảo:', '20');
+      const score = Number(String(raw||'').replace(',', '.'));
+      if(!Number.isFinite(score)){ toast('Điểm không hợp lệ'); return; }
+      const item = {id:`CUSTOM-${Date.now()}`, school, short:'Tự thêm', code, major, score, combo:'', source:'Người dùng tự thêm'};
+      state.custom.push(item); save(); renderSchoolFilter(); render(); toast('Đã thêm ngành riêng');
+    }
+    function copyChoices(){
+      if(!state.choices.length){ toast('Chưa có nguyện vọng để copy'); return; }
+      const text = state.choices.map((id,i)=>{
+        const p = findProgram(id); return `${i+1}. ${p.school} - ${p.major} (${p.code}) - mốc ${fmtScore(p.score)}`;
+      }).join('\n');
+      navigator.clipboard?.writeText(text).then(()=>toast('Đã copy danh sách')).catch(()=>{
+        const ta = document.createElement('textarea'); ta.value = text; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); ta.remove(); toast('Đã copy danh sách');
+      });
+    }
+    function updatePrintArea(){
+      const scoreText = state.score ? state.score.replace('.', ',') : 'chưa nhập';
+      const rows = Array.from({length:MAX_CHOICES}, (_,i)=>{
+        const p = findProgram(state.choices[i]);
+        return `<tr><td>${i+1}</td><td>${p?escapeHtml(p.school):''}</td><td>${p?escapeHtml(p.major):''}</td><td>${p?escapeHtml(p.code):''}</td><td>${p?fmtScore(p.score):''}</td></tr>`;
+      }).join('');
+      $('printArea').innerHTML = `<div class="print-head"><div><h1>Xếp Nguyện Vọng Thử</h1><p>Điểm xét tuyển: ${escapeHtml(scoreText)} · Danh sách do người dùng tự chọn</p></div><div>${new Date().toLocaleString('vi-VN')}</div></div><table><thead><tr><th>NV</th><th>Trường</th><th>Ngành</th><th>Mã</th><th>Mốc</th></tr></thead><tbody>${rows}</tbody></table><div class="print-note">Điểm mốc là điểm chuẩn THPT 2025 dùng để tham khảo, không thay thế thông tin chính thức của Bộ GD&ĐT/trường.</div>`;
+    }
+    function printChoices(){
+      updatePrintArea();
+      setTimeout(()=>window.print(), 50);
+    }
+    function enableDrag(container){
+      let from = null;
+      container.querySelectorAll('.choice').forEach(card=>{
+        card.addEventListener('dragstart',()=>{ from = Number(card.dataset.index); card.style.opacity = '.55'; });
+        card.addEventListener('dragend',()=>{ card.style.opacity = ''; });
+        card.addEventListener('dragover',e=>e.preventDefault());
+        card.addEventListener('drop',e=>{
+          e.preventDefault(); const to = Number(card.dataset.index);
+          if(from === null || from === to) return;
+          const [item] = state.choices.splice(from,1); state.choices.splice(to,0,item); from = null; save(); render();
+        });
+      });
+    }
+    function escapeHtml(s){
+      return String(s ?? '').replace(/[&<>'"]/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[c]));
+    }
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
 </body>
 </html>
